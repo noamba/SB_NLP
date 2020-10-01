@@ -1,29 +1,24 @@
 import re
-from collections import namedtuple, defaultdict
+from collections import defaultdict
 from pprint import pprint
 
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
 from prepare import prepare_data, remove_punct
-from settings import NLP_ENG
+from settings import (
+    NLP_ENG,
+    SELECT_ROWS_BY_RANGE,
+    ROW_RANGE,
+    LAST_ROWS_ONLY,
+    REDUCE_ROWS,
+    CATEGORIES_FILE,
+    DEBUG,
+)
 from utils import timeit
 
-CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
-DEBUG = False
-
-# Reduce rows vars
-REDUCE_ROWS = False
-SELECT_ROWS_BY_RANGE = False
-
-select_rows = namedtuple("rows", ["first", "last"])
-ROW_RANGE = select_rows(10, 20)
-
-LAST_ROWS_ONLY = 300
-
-
 PHRASES = [
-    "I love concentrated apricot juice but not just that, I can also drink blueberry-juices or concentrated Blueberry juices",
+    "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
     "Blueberry juices - that's my fav. But, I also love concentrated apricot juice",
     "Blueberry juice - that's my fav. But, I also love concentrated apricot juices",
     "I like Refrigerated squeezed apple juices",
@@ -111,7 +106,7 @@ def setup(categories_file):
     if REDUCE_ROWS:
         categories_file_df = get_reduced_df(categories_file_df)
 
-    # create the data structure required for creating the phrase-match object
+    # create the phrase-matcher object
     categories_series = categories_file_df["category"].astype("string")
     categories_df = prepare_data(categories_series)
     match_dict = get_match_dict(categories_df)
