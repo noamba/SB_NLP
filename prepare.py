@@ -1,15 +1,6 @@
-import string
-
 import numpy as np
-import spacy
 
-from settings import NON_ENGLISH_LANGUAGES
-
-NLP_ENG = spacy.load("en_core_web_sm")
-
-TRANSLATE_TABLE = {
-    ord(punctuation_char): " " for punctuation_char in string.punctuation
-}
+from settings import NON_ENGLISH_LANGUAGES, NLP_ENG, TRANSLATE_TABLE
 
 
 def extract_language(x):

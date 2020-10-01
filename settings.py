@@ -1,3 +1,7 @@
+import string
+
+import spacy
+
 LANGUAGES = {
     "ge",
     "cy",
@@ -48,3 +52,8 @@ LANGUAGES = {
 }
 
 NON_ENGLISH_LANGUAGES = LANGUAGES - {"uk"}
+NLP_ENG = spacy.load("en_core_web_sm")
+
+TRANSLATE_TABLE = {
+    ord(punctuation_char): " " for punctuation_char in string.punctuation
+}
