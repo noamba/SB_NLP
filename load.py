@@ -10,17 +10,17 @@ from prepare import prepare_data, remove_punct
 from settings import NLP_ENG
 
 CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
+DEBUG = True
 
-# Reduce rows
+# Reduce rows vars
 REDUCE_ROWS = True
-SELECT_ROWS_BY_RANGE = True
+SELECT_ROWS_BY_RANGE = False
 
 select_rows = namedtuple("rows", ["first", "last"])
 ROWS = select_rows(10, 20)
 
-LAST_ROWS_ONLY = -300
+LAST_ROWS_ONLY = 300
 
-DEBUG = True
 
 PHRASES = [
     "I love concentrated apricot juice but not just that, I can also drink blueberry-juices or concentrated Blueberry juices"
@@ -32,12 +32,11 @@ PHRASES = [
 
 
 def get_phrase_matcher(match_dict):
-
     matcher = PhraseMatcher(NLP_ENG.vocab)
-    terms = match_dict.keys()
+    match_phrases = match_dict.keys()
 
     # Using make_doc to speed things up
-    patterns = [NLP_ENG.make_doc(text) for text in terms]
+    patterns = [NLP_ENG.make_doc(match_phrase) for match_phrase in match_phrases]
     matcher.add("Categories", None, *patterns)
 
     return matcher
@@ -45,7 +44,7 @@ def get_phrase_matcher(match_dict):
 
 def get_match_dict(categories_df):
     match_dict = defaultdict(str)
-    # create dict from keys: cleaned + lemmatized to values
+    # create dict from keys: cleaned + lemmatized, values: original categories
     for index, row in categories_df.iterrows():
         match_dict[row.match_phrase] = row.category
         if row.match_phrase_lemma:
@@ -55,11 +54,10 @@ def get_match_dict(categories_df):
 
 
 def get_reduced_df(df):
-
     if SELECT_ROWS_BY_RANGE:
         df = df[ROWS.first : ROWS.last]
     elif LAST_ROWS_ONLY:
-        df = df[LAST_ROWS_ONLY:]
+        df = df[-LAST_ROWS_ONLY:]
 
     return df
 
@@ -79,11 +77,11 @@ def match_phrases(phrase, matcher):
     doc = NLP_ENG(phrase)
     matches = matcher(doc)
 
-    match_strings = []
+    match_strings = set()
 
     for match_id, start, end in matches:
         span = doc[start:end]
-        match_strings.append(span.text)
+        match_strings.add(span.text)
 
     return match_strings
 
