@@ -1,6 +1,11 @@
 import string
 
 import numpy as np
+import spacy
+
+from settings import NON_ENGLISH_LANGUAGES
+
+NLP_ENG = spacy.load("en_core_web_sm")
 
 TRANSLATE_TABLE = {
     ord(punctuation_char): " " for punctuation_char in string.punctuation
@@ -26,7 +31,18 @@ def remove_punct(x):
 
 
 def add_lemma(categories_df):
-    return categories_df
+    categories_df["match_phrase_lemma"] = ""
+
+    def add_lemma_to_row(row):
+        if row.language in NON_ENGLISH_LANGUAGES:  # currently lemmatize only english
+            return row
+
+        doc = NLP_ENG(row.match_phrase)
+        row.match_phrase_lemma = " ".join([token.lemma_ for token in doc])
+
+        return row
+
+    return categories_df.apply(add_lemma_to_row, axis=1)
 
 
 def prepare_data(categories_series):
@@ -35,12 +51,6 @@ def prepare_data(categories_series):
 
     # remove duplicates
     categories_series = categories_series.drop_duplicates()
-
-    ####TEMP add with spaces
-    # temp_series = pd.Series(
-    #     ["Plant-based      foods and beverages", "blah"], name="category"
-    # )
-    # categories = categories.append(temp_series, ignore_index=True, verify_integrity=True,)
 
     # create df
     categories_df = categories_series.to_frame()
