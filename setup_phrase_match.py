@@ -61,10 +61,10 @@ def print_df(categories_df):
 
 
 @timeit
-def get_categories(categories_file):
+def get_categories(categories_file, reduce_category_set_size):
     categories_file_df = pd.read_csv(categories_file, sep="\t", header=0)
 
-    if REDUCE_CATEGORY_SET_SIZE:
+    if reduce_category_set_size:
         categories_file_df = get_reduced_df(categories_file_df)
 
     return categories_file_df["category"].astype("string")
@@ -72,7 +72,7 @@ def get_categories(categories_file):
 
 @timeit
 def setup():
-    categories = get_categories(CATEGORIES_FILE)
+    categories = get_categories(CATEGORIES_FILE, REDUCE_CATEGORY_SET_SIZE)
     prepared_data = prepare_data(categories)
 
     if DEBUG == "Full":
