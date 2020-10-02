@@ -1,6 +1,7 @@
 import numpy as np
 
 from settings import NON_ENGLISH_LANGUAGES, NLP_ENG, TRANSLATE_TABLE
+from utils import timeit
 
 
 def extract_language(x):
@@ -20,8 +21,11 @@ def remove_language(x):
 def remove_punct(x):
     return x.translate(TRANSLATE_TABLE)
 
-
+@timeit
 def add_lemma(categories_df):
+
+    # TODO: Can try to optimize time for this function - it's quite slow
+
     categories_df["match_phrase_lemma"] = ""
 
     def add_lemma_to_row(row):
@@ -35,7 +39,7 @@ def add_lemma(categories_df):
 
     return categories_df.apply(add_lemma_to_row, axis=1)
 
-
+@timeit
 def prepare_data(categories_series):
     # drop missing values
     categories_series = categories_series.dropna()
