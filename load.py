@@ -22,7 +22,7 @@ PHRASES = [
     # "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
     # "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
     # "I like Refrigerated squeezed apple juices",
-    "I like lemon juice and granulated sugar on my pancakes.",
+    "I like lemon juice and granulated sugar on my pancake   ",
     "I like lemon juice and granulated sugars on my pancakes.",
 ]
 
