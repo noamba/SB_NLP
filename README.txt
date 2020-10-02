@@ -11,3 +11,16 @@ Todo:
     Note that this input should not match other phrases from the phrases list
     that have the word juice or sugar in them if the rest of those
     phrases are not matched with this input.
+
+
+FLASK
+
+NOTE: the flask server is not for production, leave it on port 500 for now.
+        When insatlling a production server switch to port 8080
+
+To run flask dev server, issue:
+    export FLASK_APP=web.py
+    source venv/bin/avtivate
+    flask run
+
+Example URL: http://127.0.0.1:5000/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices
