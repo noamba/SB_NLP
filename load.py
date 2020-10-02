@@ -17,11 +17,11 @@ from settings import (
 )
 from utils import timeit
 
-PHRASES = [
-    # "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
-    # "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
-    # "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
-    # "I like Refrigerated squeezed apple juices",
+DEMO_PHRASES = [
+    "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
+    "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
+    "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
+    "I like Refrigerated squeezed apple juices",
     "I like lemon juice and granulated sugar on my pancake   ",
     "I like lemon juice and granulated sugars on my pancakes.",
 ]
@@ -88,8 +88,6 @@ def output_matches(match_dict, match_strings, phrase):
     print(f"\nmatch_strings:")
     pprint(match_strings)
     print()
-    for match_string in match_strings:
-        print("matched category:", match_dict[match_string])
 
 
 def clean_string(phrase):
@@ -97,7 +95,7 @@ def clean_string(phrase):
 
 
 @timeit
-def match_categories_in_phrases(match_dict, matcher, phrase):
+def match_categories_in_phrase(match_dict, matcher, phrase):
     cleaned_phrase = clean_string(phrase)
 
     if DEBUG:
@@ -105,7 +103,14 @@ def match_categories_in_phrases(match_dict, matcher, phrase):
         print("cleaned phrase:", cleaned_phrase)
 
     match_strings = match_phrases(cleaned_phrase, matcher)
-    output_matches(match_dict, match_strings, phrase)
+    matched_categories = []
+    for match_string in match_strings:
+        matched_categories.append(match_dict[match_string])
+
+    if DEBUG:
+        output_matches(matched_categories, match_strings, phrase)
+
+    return matched_categories
 
 
 @timeit
@@ -116,6 +121,7 @@ def get_categories(categories_file):
         categories_file_df = get_reduced_df(categories_file_df)
 
     return categories_file_df["category"].astype("string")
+
 
 @timeit
 def setup():
@@ -134,5 +140,11 @@ if __name__ == "__main__":
 
     match_dict, phrase_matcher = setup()
 
-    for phrase in PHRASES:
-        match_categories_in_phrases(match_dict, phrase_matcher, phrase)
+    for phrase in DEMO_PHRASES:
+        matched_categories = match_categories_in_phrase(
+            match_dict, phrase_matcher, phrase
+        )
+        if DEBUG:
+            print("matched categories:")
+            pprint(matched_categories)
+            print("\n\n")

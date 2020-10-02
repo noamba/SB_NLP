@@ -7,8 +7,8 @@ CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
 
 # Reduce rows vars
-REDUCE_ROWS = False
-SELECT_ROWS_BY_RANGE = False
+REDUCE_ROWS = True
+SELECT_ROWS_BY_RANGE = True
 
 select_rows = namedtuple("rows", ["first", "last"])
 ROW_RANGE = select_rows(10, 20)
