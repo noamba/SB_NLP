@@ -8,15 +8,6 @@ CATEGORIES_FILE = "off_categories.tsv"
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
 REDUCE_CATEGORY_SET_SIZE = True
 
-DEMO_PHRASES = [
-    "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
-    "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
-    "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
-    "I like Refrigerated squeezed apple juices",
-    "I like lemon juice and granulated sugar on my pancake   ",
-    "I like lemon juice and granulated sugars on my pancakes.",
-]
-
 # REDUCE_CATEGORY_SET_SIZE variables
 SELECT_ROWS_BY_RANGE = True
 select_rows = namedtuple("rows", ["first", "last"])
