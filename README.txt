@@ -23,4 +23,7 @@ To run flask dev server, issue:
     source venv/bin/avtivate
     flask run
 
-Example URL: http://127.0.0.1:5000/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices
+Example URLs:
+http://127.0.0.1:5000/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices
+
+http://127.0.0.1:5000/?text=I+love+concentrated+apricot+juice
