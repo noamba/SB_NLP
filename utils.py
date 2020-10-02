@@ -7,7 +7,11 @@ def timeit(func):
         result = func(*args, **kw)
         end = perf_counter()
 
-        print(f"\n\n{func.__name__} process time:", end - start)
+        elapsed_time = end - start
+        print(
+            f"{'>>> ' if elapsed_time > 2 else ''}"
+            f"{func.__name__} process time: {elapsed_time}\n"
+        )
 
         return result
 
