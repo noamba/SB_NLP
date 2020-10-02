@@ -1,11 +1,9 @@
-import re
 from collections import defaultdict
-from pprint import pprint
 
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
-from prepare import prepare_data, remove_punct
+from prepare import prepare_data
 from settings import (
     NLP_ENG,
     SELECT_ROWS_BY_RANGE,
@@ -16,15 +14,6 @@ from settings import (
     DEBUG,
 )
 from utils import timeit
-
-DEMO_PHRASES = [
-    "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
-    "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
-    "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
-    "I like Refrigerated squeezed apple juices",
-    "I like lemon juice and granulated sugar on my pancake   ",
-    "I like lemon juice and granulated sugars on my pancakes.",
-]
 
 
 @timeit
@@ -71,48 +60,6 @@ def print_df(categories_df):
         )
 
 
-def match_phrases(phrase, matcher):
-    doc = NLP_ENG(phrase)
-    matches = matcher(doc)
-
-    match_strings = set()
-
-    for match_id, start, end in matches:
-        span = doc[start:end]
-        match_strings.add(span.text)
-
-    return match_strings
-
-
-def output_matches(phrase, cleaned_phrase, match_strings, matched_categories):
-    print("Phrase:", phrase)
-    print("Cleaned phrase:", cleaned_phrase)
-    print(f"Matched strings:")
-    pprint(match_strings)
-    print("Matched categories:")
-    pprint(matched_categories)
-    print("\n\n")
-
-
-def clean_string(phrase):
-    return re.sub(r"\s+", " ", remove_punct(phrase.lower().lstrip().rstrip()))
-
-
-@timeit
-def match_categories_in_phrase(match_dict, matcher, phrase):
-    cleaned_phrase = clean_string(phrase)
-    match_strings = match_phrases(cleaned_phrase, matcher)
-    matched_categories = []
-
-    for match_string in match_strings:
-        matched_categories.append(match_dict[match_string])
-
-    if DEBUG:
-        output_matches(phrase, cleaned_phrase, match_strings, matched_categories)
-
-    return matched_categories
-
-
 @timeit
 def get_categories(categories_file):
     categories_file_df = pd.read_csv(categories_file, sep="\t", header=0)
@@ -137,10 +84,4 @@ def setup():
 
 
 if __name__ == "__main__":
-
     match_dict, phrase_matcher = setup()
-
-    for phrase in DEMO_PHRASES:
-        matched_categories = match_categories_in_phrase(
-            match_dict, phrase_matcher, phrase
-        )

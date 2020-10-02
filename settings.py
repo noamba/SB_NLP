@@ -6,6 +6,15 @@ import spacy
 CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
 
+DEMO_PHRASES = [
+    "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
+    "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
+    "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
+    "I like Refrigerated squeezed apple juices",
+    "I like lemon juice and granulated sugar on my pancake   ",
+    "I like lemon juice and granulated sugars on my pancakes.",
+]
+
 # Reduce rows vars
 REDUCE_ROWS = True
 SELECT_ROWS_BY_RANGE = True
