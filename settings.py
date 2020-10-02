@@ -4,11 +4,11 @@ from collections import namedtuple
 import spacy
 
 CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
-DEBUG = True
+DEBUG = "Basic"  #  "Full" OR "Basic" or None
 
 # Reduce rows vars
 REDUCE_ROWS = False
-SELECT_ROWS_BY_RANGE = True
+SELECT_ROWS_BY_RANGE = False
 
 select_rows = namedtuple("rows", ["first", "last"])
 ROW_RANGE = select_rows(10, 20)

@@ -117,12 +117,12 @@ def get_categories(categories_file):
 
     return categories_file_df["category"].astype("string")
 
-
+@timeit
 def setup():
     categories = get_categories(CATEGORIES_FILE)
     prepared_data = prepare_data(categories)
 
-    if DEBUG:
+    if DEBUG == "Full":
         print_df(prepared_data)
 
     match_dict = get_match_dict(prepared_data)
