@@ -18,15 +18,16 @@ from settings import (
 from utils import timeit
 
 PHRASES = [
-    "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
-    "Blueberry juices - that's my fav. But, I also love concentrated apricot juice",
-    "Blueberry juice - that's my fav. But, I also love concentrated apricot juices",
-    "I like Refrigerated squeezed apple juices",
+    # "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
+    # "Blueberry juices - that`s my fav. But, I also love concentrated apricot juice",
+    # "Blueberry juice - that`s my fav. But, I also love concentrated apricot juices",
+    # "I like Refrigerated squeezed apple juices",
     "I like lemon juice and granulated sugar on my pancakes.",
     "I like lemon juice and granulated sugars on my pancakes.",
 ]
 
 
+@timeit
 def get_phrase_matcher(match_dict):
     matcher = PhraseMatcher(NLP_ENG.vocab)
     match_phrases = match_dict.keys()
@@ -38,6 +39,7 @@ def get_phrase_matcher(match_dict):
     return matcher
 
 
+@timeit
 def get_match_dict(categories_df):
     match_dict = defaultdict(str)
     # create dict from keys: cleaned + lemmatized, values: original categories
@@ -83,7 +85,6 @@ def match_phrases(phrase, matcher):
 
 
 def output_matches(match_dict, match_strings, phrase):
-    print(f"\n\n{phrase}")
     print(f"\nmatch_strings:")
     pprint(match_strings)
     print()
@@ -91,36 +92,43 @@ def output_matches(match_dict, match_strings, phrase):
         print("matched category:", match_dict[match_string])
 
 
-@timeit
-def match_categories_in_phrases(match_dict, matcher, phrases):
-    for phrase in phrases:
-        phrase = re.sub(r"\s+", " ", remove_punct(phrase.lower().lstrip().rstrip()))
-        match_strings = match_phrases(phrase, matcher)
-        output_matches(match_dict, match_strings, phrase)
+def clean_string(phrase):
+    return re.sub(r"\s+", " ", remove_punct(phrase.lower().lstrip().rstrip()))
 
 
 @timeit
-def setup(categories_file):
+def match_categories_in_phrases(match_dict, matcher, phrase):
+    cleaned_phrase = clean_string(phrase)
+
+    if DEBUG:
+        print("phrase:", phrase)
+        print("cleaned phrase:", cleaned_phrase)
+
+    match_strings = match_phrases(cleaned_phrase, matcher)
+    output_matches(match_dict, match_strings, phrase)
+
+
+@timeit
+def get_categories(categories_file):
     categories_file_df = pd.read_csv(categories_file, sep="\t", header=0)
 
     if REDUCE_ROWS:
         categories_file_df = get_reduced_df(categories_file_df)
 
-    # create the phrase-matcher object
-    categories_series = categories_file_df["category"].astype("string")
-    categories_df = prepare_data(categories_series)
-    match_dict = get_match_dict(categories_df)
-    matcher = get_phrase_matcher(match_dict)
-
-    return categories_df, match_dict, matcher
+    return categories_file_df["category"].astype("string")
 
 
 def main(phrases):
-    categories_df, match_dict, matcher = setup(CATEGORIES_FILE)
-    match_categories_in_phrases(match_dict, matcher, phrases)
+    categories = get_categories(CATEGORIES_FILE)
+    prepared_data = prepare_data(categories)
 
     if DEBUG:
-        print_df(categories_df)
+        print_df(prepared_data)
+
+    match_dict = get_match_dict(prepared_data)
+    matcher = get_phrase_matcher(match_dict)
+    for phrase in phrases:
+        match_categories_in_phrases(match_dict, matcher, phrase)
 
 
 if __name__ == "__main__":

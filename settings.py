@@ -4,22 +4,23 @@ from collections import namedtuple
 import spacy
 
 CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
-DEBUG = False
+DEBUG = True
 
 # Reduce rows vars
 REDUCE_ROWS = False
-SELECT_ROWS_BY_RANGE = False
+SELECT_ROWS_BY_RANGE = True
 
 select_rows = namedtuple("rows", ["first", "last"])
 ROW_RANGE = select_rows(10, 20)
 
 LAST_ROWS_ONLY = 300
 
-NLP_ENG = spacy.load("en_core_web_sm")
+# NLP_ENG = spacy.load("en_core_web_sm")
+NLP_ENG = spacy.load("en_core_web_lg")
 
-TRANSLATE_TABLE = {
-    ord(punctuation_char): " " for punctuation_char in string.punctuation
-}
+PUNCT_TO_REMOVE = set(string.punctuation) - {"`"}  # excluding asterix
+
+TRANSLATE_TABLE = {ord(punctuation_char): " " for punctuation_char in PUNCT_TO_REMOVE}
 
 LANGUAGES = {
     "ge",
