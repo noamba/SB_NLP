@@ -3,7 +3,8 @@ from collections import namedtuple
 
 import spacy
 
-CATEGORIES_FILE = "off_categories.tsv"
+# TODO: use Path package?
+CATEGORIES_FILE = "data/off_categories.tsv"
 
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
 REDUCE_CATEGORY_SET_SIZE = True
