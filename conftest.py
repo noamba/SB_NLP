@@ -1,8 +1,8 @@
 import pandas as pd
 import pytest
 
-from prepare_data import prepare_data
-from setup_phrase_match import get_match_dict, get_phrase_matcher
+from nlp.prepare_data import prepare_data
+from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
 
 
 @pytest.fixture

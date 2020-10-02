@@ -7,7 +7,7 @@ import pytest
 from spacy.matcher import PhraseMatcher
 
 from settings import CATEGORIES_FILE
-from setup_phrase_match import get_categories, get_match_dict, get_phrase_matcher
+from nlp.setup_phrase_match import get_categories, get_match_dict, get_phrase_matcher
 
 
 @pytest.mark.parametrize("reduce_category_set_size", [True, False])

@@ -3,10 +3,10 @@ import json
 from flask import Flask
 from flask import request
 
-from match_categories import get_matched_categories_in_phrase
-from prepare_data import prepare_data
+from nlp.match_categories import get_matched_categories_in_phrase
+from nlp.prepare_data import prepare_data
 from settings import CATEGORIES_FILE, REDUCE_CATEGORY_SET_SIZE, DEBUG
-from setup_phrase_match import (
+from nlp.setup_phrase_match import (
     get_categories,
     output_categories_df,
     get_match_dict,

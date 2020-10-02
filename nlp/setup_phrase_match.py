@@ -9,7 +9,7 @@ from settings import (
     ROW_RANGE,
     LAST_ROWS_ONLY,
 )
-from utils import timeit
+from nlp.utils import timeit
 
 
 @timeit

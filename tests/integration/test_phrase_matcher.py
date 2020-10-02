@@ -1,4 +1,4 @@
-from match_categories import get_matched_categories_in_phrase
+from nlp.match_categories import get_matched_categories_in_phrase
 
 PHRASES_WITH_ONE_CATEGORY = [
     "I love plant based foods and beverages",

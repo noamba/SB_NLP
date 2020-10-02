@@ -1,6 +1,6 @@
 import pandas as pd
 
-from prepare_data import prepare_data
+from nlp.prepare_data import prepare_data
 
 
 def test_prepare_data_returns_dataframe_smoke_test(categories_series_fixture):

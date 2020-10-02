@@ -1,9 +1,9 @@
 import re
 from pprint import pprint
 
-from prepare_data import remove_punct
+from nlp.prepare_data import remove_punct
 from settings import NLP_ENG, DEBUG
-from utils import timeit
+from nlp.utils import timeit
 
 
 def match_phrases(phrase, matcher):
