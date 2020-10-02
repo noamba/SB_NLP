@@ -19,3 +19,7 @@ def find_categories():
     return json.dumps(
         get_matched_categories_in_phrase(match_dict, phrase_matcher, phrase)
     )
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
