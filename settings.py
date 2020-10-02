@@ -3,10 +3,10 @@ from collections import namedtuple
 
 import spacy
 
-CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
+CATEGORIES_FILE = "off_categories.tsv"
 
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
-REDUCE_CATEGORY_SET_SIZE = False
+REDUCE_CATEGORY_SET_SIZE = True
 
 DEMO_PHRASES = [
     "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
