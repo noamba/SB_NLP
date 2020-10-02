@@ -1,4 +1,10 @@
 Todo:
+    have only lemma on english? currently keeping both cleaned match phrase and lemmatized
+    Lemmatized only english, could do other languages with spacy, nltk or other nlp packeges that have the language?
+    documentation
+    docker
+    poetry/conda?
+
 
 To have paths recognised when running tests from sb_nlp (?) issued:
 export PYTHONPATH="${PYTHONPATH}:/path/to/sb_nlp"
