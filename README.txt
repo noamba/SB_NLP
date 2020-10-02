@@ -1,5 +1,9 @@
 Todo:
 
+To have paths recognised when running tests from sb_nlp (?) issued:
+export PYTHONPATH="${PYTHONPATH}:/path/to/sb_nlp"
+
+
 * Optimize lemmatization
 * Save phrasematcher to disk. Pickle?
 
