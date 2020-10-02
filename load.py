@@ -84,10 +84,14 @@ def match_phrases(phrase, matcher):
     return match_strings
 
 
-def output_matches(match_dict, match_strings, phrase):
-    print(f"\nmatch_strings:")
+def output_matches(phrase, cleaned_phrase, match_strings, matched_categories):
+    print("Phrase:", phrase)
+    print("Cleaned phrase:", cleaned_phrase)
+    print(f"Matched strings:")
     pprint(match_strings)
-    print()
+    print("Matched categories:")
+    pprint(matched_categories)
+    print("\n\n")
 
 
 def clean_string(phrase):
@@ -97,18 +101,14 @@ def clean_string(phrase):
 @timeit
 def match_categories_in_phrase(match_dict, matcher, phrase):
     cleaned_phrase = clean_string(phrase)
-
-    if DEBUG:
-        print("phrase:", phrase)
-        print("cleaned phrase:", cleaned_phrase)
-
     match_strings = match_phrases(cleaned_phrase, matcher)
     matched_categories = []
+
     for match_string in match_strings:
         matched_categories.append(match_dict[match_string])
 
     if DEBUG:
-        output_matches(matched_categories, match_strings, phrase)
+        output_matches(phrase, cleaned_phrase, match_strings, matched_categories)
 
     return matched_categories
 
@@ -144,7 +144,3 @@ if __name__ == "__main__":
         matched_categories = match_categories_in_phrase(
             match_dict, phrase_matcher, phrase
         )
-        if DEBUG:
-            print("matched categories:")
-            pprint(matched_categories)
-            print("\n\n")
