@@ -9,7 +9,7 @@ from settings import (
     SELECT_ROWS_BY_RANGE,
     ROW_RANGE,
     LAST_ROWS_ONLY,
-    REDUCE_ROWS,
+    REDUCE_CATEGORY_SET_SIZE,
     CATEGORIES_FILE,
     DEBUG,
 )
@@ -64,7 +64,7 @@ def print_df(categories_df):
 def get_categories(categories_file):
     categories_file_df = pd.read_csv(categories_file, sep="\t", header=0)
 
-    if REDUCE_ROWS:
+    if REDUCE_CATEGORY_SET_SIZE:
         categories_file_df = get_reduced_df(categories_file_df)
 
     return categories_file_df["category"].astype("string")

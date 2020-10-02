@@ -4,7 +4,9 @@ from collections import namedtuple
 import spacy
 
 CATEGORIES_FILE = "/home/n/code/streetbees/SB_NLP/off_categories.tsv"
+
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
+REDUCE_CATEGORY_SET_SIZE = False
 
 DEMO_PHRASES = [
     "I love concentrated apricot juice. I can also drink blueberry-juices or concentrated Blueberry juices",
@@ -15,10 +17,8 @@ DEMO_PHRASES = [
     "I like lemon juice and granulated sugars on my pancakes.",
 ]
 
-# Reduce rows vars
-REDUCE_ROWS = True
+# REDUCE_CATEGORY_SET_SIZE variables
 SELECT_ROWS_BY_RANGE = True
-
 select_rows = namedtuple("rows", ["first", "last"])
 ROW_RANGE = select_rows(10, 20)
 
