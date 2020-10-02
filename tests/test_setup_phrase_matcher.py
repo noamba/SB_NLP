@@ -31,15 +31,8 @@ def test_get_match_dict(prepared_data_fixture, categories_series_fixture):
     assert list(match_dict.values())[0] in categories_series_fixture.to_list()
 
 
-class TestGetPhraseMatcher:
-    """tests for get_phrase_matcher function"""
+def test_get_phrase_matcher_returns_PhraseMatcher(match_dict_fixture):
+    """test get_phrase_matcher returns a PhraseMatcher"""
+    phrase_matcher = get_phrase_matcher(match_dict_fixture)
 
-    def test_get_phrase_matcher_returns_PhraseMatcher(self, match_dict_fixture):
-        """test get_phrase_matcher returns a PhraseMatcher"""
-        phrase_matcher = get_phrase_matcher(match_dict_fixture)
-
-        assert type(phrase_matcher) == PhraseMatcher
-
-    def test_something_else_in_get_phrase_matcher(self):
-        """Just an noop test to show how a test *class* could be useful"""
-        assert True
+    assert type(phrase_matcher) == PhraseMatcher
