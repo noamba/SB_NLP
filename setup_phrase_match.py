@@ -3,15 +3,11 @@ from collections import defaultdict
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
-from prepare_data import prepare_data
 from settings import (
     NLP_ENG,
     SELECT_ROWS_BY_RANGE,
     ROW_RANGE,
     LAST_ROWS_ONLY,
-    REDUCE_CATEGORY_SET_SIZE,
-    CATEGORIES_FILE,
-    DEBUG,
 )
 from utils import timeit
 
@@ -68,20 +64,3 @@ def get_categories(categories_file, reduce_category_set_size):
         categories_file_df = get_reduced_df(categories_file_df)
 
     return categories_file_df["category"].astype("string")
-
-
-@timeit
-def setup():
-    categories = get_categories(CATEGORIES_FILE, REDUCE_CATEGORY_SET_SIZE)
-    prepared_data = prepare_data(categories)
-
-    if DEBUG == "Full":
-        output_categories_df(prepared_data)
-
-    match_dict = get_match_dict(prepared_data)
-
-    return match_dict, get_phrase_matcher(match_dict)
-
-
-if __name__ == "__main__":
-    match_dict, phrase_matcher = setup()
