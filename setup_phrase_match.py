@@ -3,7 +3,7 @@ from collections import defaultdict
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
-from prepare import prepare_data
+from prepare_data import prepare_data
 from settings import (
     NLP_ENG,
     SELECT_ROWS_BY_RANGE,

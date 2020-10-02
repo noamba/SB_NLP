@@ -1,7 +1,7 @@
 import re
 from pprint import pprint
 
-from prepare import remove_punct
+from prepare_data import remove_punct
 from settings import NLP_ENG, DEBUG
 from utils import timeit
 
