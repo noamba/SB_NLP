@@ -18,7 +18,7 @@ from utils import timeit
 
 @timeit
 def get_phrase_matcher(match_dict):
-    matcher = PhraseMatcher(NLP_ENG.vocab)
+    matcher = PhraseMatcher(NLP_ENG.vocab, validate=True)
     match_phrases = match_dict.keys()
 
     # Using make_doc to speed things up
@@ -49,7 +49,7 @@ def get_reduced_df(df):
     return df
 
 
-def print_df(categories_df):
+def output_categories_df(categories_df):
     for index, row in categories_df.iterrows():
         print(
             row.category,
@@ -76,7 +76,7 @@ def setup():
     prepared_data = prepare_data(categories)
 
     if DEBUG == "Full":
-        print_df(prepared_data)
+        output_categories_df(prepared_data)
 
     match_dict = get_match_dict(prepared_data)
 
