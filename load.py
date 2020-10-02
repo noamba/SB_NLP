@@ -118,7 +118,7 @@ def get_categories(categories_file):
     return categories_file_df["category"].astype("string")
 
 
-def main(phrases):
+def setup():
     categories = get_categories(CATEGORIES_FILE)
     prepared_data = prepare_data(categories)
 
@@ -126,10 +126,13 @@ def main(phrases):
         print_df(prepared_data)
 
     match_dict = get_match_dict(prepared_data)
-    matcher = get_phrase_matcher(match_dict)
-    for phrase in phrases:
-        match_categories_in_phrases(match_dict, matcher, phrase)
+
+    return match_dict, get_phrase_matcher(match_dict)
 
 
 if __name__ == "__main__":
-    main(PHRASES)
+
+    match_dict, phrase_matcher = setup()
+
+    for phrase in PHRASES:
+        match_categories_in_phrases(match_dict, phrase_matcher, phrase)
