@@ -1,54 +1,27 @@
+import pytest
+
+from conftest import (
+    phrases_with_ONE_category,
+    phrases_with_NO_categories,
+    phrases_with_TWO_category,
+)
 from nlp.match_categories import get_matched_categories_in_phrase
 
-PHRASES_WITH_ONE_CATEGORY = [
-    "I love plant based foods and beverages",
-    "Where can I get that french delicacy, Andouilles?",
-]
 
+@pytest.mark.parametrize(
+    "phrases, number_or_matches",
+    [
+        (phrases_with_NO_categories(), 0),
+        (phrases_with_ONE_category(), 1),
+        (phrases_with_TWO_category(), 2),
+    ],
+)
+def test_find_one_category_in_phrase(
+    match_dict_fixture, phrase_match_fixture, phrases, number_or_matches
+):
+    for phrase in phrases:
+        matched_categories = get_matched_categories_in_phrase(
+            match_dict_fixture, phrase_match_fixture, phrase
+        )
 
-PHRASES_WITH_TWO_CATEGORIES = [
-    "I love Plant Based foods and Beverages but I can`t "
-    "handle andouilles in any given day...",
-    "Where can I get that french delicacy, Andouilles? "
-    "Also, are plant based foods and beverages a fad?",
-]
-
-PHRASES_WITH_NO_CATEGORY = [
-    "I love plant foods and beverages",
-    "Where can I get that french delicacy, Andou-illes?",
-]
-
-
-class TestIntegrationFindCategoriesInPhrase:
-    def test_find_one_category_in_phrase(
-        self, match_dict_fixture, phrase_match_fixture
-    ):
-
-        for phrase in PHRASES_WITH_ONE_CATEGORY:
-            matched_categories = get_matched_categories_in_phrase(
-                match_dict_fixture, phrase_match_fixture, phrase
-            )
-
-            assert len(matched_categories) == 1
-
-    def test_find_two_categories_in_phrase(
-        self, match_dict_fixture, phrase_match_fixture
-    ):
-
-        for phrase in PHRASES_WITH_TWO_CATEGORIES:
-            matched_categories = get_matched_categories_in_phrase(
-                match_dict_fixture, phrase_match_fixture, phrase
-            )
-
-            assert len(matched_categories) == 2
-
-    def test_find_no_categories_in_phrase(
-        self, match_dict_fixture, phrase_match_fixture
-    ):
-
-        for phrase in PHRASES_WITH_NO_CATEGORY:
-            matched_categories = get_matched_categories_in_phrase(
-                match_dict_fixture, phrase_match_fixture, phrase
-            )
-
-            assert len(matched_categories) == 0
+        assert len(matched_categories) == number_or_matches
