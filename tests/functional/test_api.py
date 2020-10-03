@@ -1,4 +1,5 @@
 import json
+from http import HTTPStatus
 from urllib.parse import quote_plus
 
 import pytest
@@ -33,5 +34,5 @@ def test_base_route_with_a_phrase_with_matches(
         response = client.get(url)
         matched_categories_in_response = json.loads(response.get_data())
 
-        assert response.status_code == 200
+        assert response.status_code == HTTPStatus.OK
         assert set(matched_categories_in_response) == set(matched_categories_expected)
