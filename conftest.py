@@ -10,7 +10,7 @@ from routes.routes import configure_routes
 @pytest.fixture
 def categories_series_fixture():
     return pd.Series(
-        name="category", data=["Plant-based foods and beverages", "fr:Andouilles"]
+        name="category", data=["Vanilla sugars", "fr:Vergeoises"]
     )
 
 
@@ -31,17 +31,17 @@ def phrase_match_fixture(match_dict_fixture):
 
 def phrases_with_ONE_category():
     return [
-        "I love plant based foods and beverages",
-        "Where can I get that french delicacy, Andouilles?",
+        "I love vanilla sugars and Plant Based foods and beverages",
+        "Where can I get that french delicacy, VERGEOISES?",
     ]
 
 
 def phrases_with_TWO_category():
     return [
-        "I love Plant Based foods and Beverages but I can`t "
-        "handle andouilles in any given day...",
-        "Where can I get that french delicacy, Andouilles? "
-        "Also, are plant based foods and beverages a fad?",
+        "I love Vanilla-sugar  but I can`t "
+        "handle vergeoises in any given day...",
+        "Where can I get that french delicacy, Vergeoises? "
+        "Also, are Vanilla   sugars and plant based foods and beverages a fad?",
     ]
 
 
