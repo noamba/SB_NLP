@@ -22,7 +22,6 @@ from nlp.match_categories import get_matched_categories_in_phrase
 def test_base_route_with_a_phrase_with_matches(
     match_dict_fixture, phrase_match_fixture, client, phrases, expected_matches
 ):
-
     url_prefix = "/?text="
 
     for phrase in phrases:
@@ -32,7 +31,6 @@ def test_base_route_with_a_phrase_with_matches(
 
         url = url_prefix + quote_plus(phrase)
         response = client.get(url)
-
         matched_categories_in_response = json.loads(response.get_data())
 
         assert response.status_code == 200
