@@ -10,7 +10,7 @@ from nlp.setup_phrase_match import (
     get_match_dict,
     get_phrase_matcher,
 )
-from settings import CATEGORIES_FILE, DEBUG
+from settings import CATEGORIES_FILE, DEBUG, REDUCE_CATEGORY_SET_SIZE
 
 DEMO_PHRASE = (
     "Blueberry juice - that`s my favourite. "
@@ -18,7 +18,7 @@ DEMO_PHRASE = (
 )
 
 
-def configure_routes(app, reduce_category_set_size):
+def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
 
     # set up required objects for matching categories to a phrase
     categories = get_categories(CATEGORIES_FILE, reduce_category_set_size)
