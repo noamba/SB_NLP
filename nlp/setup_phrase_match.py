@@ -5,9 +5,7 @@ from spacy.matcher import PhraseMatcher
 
 from settings import (
     NLP_ENG,
-    SELECT_ROWS_BY_RANGE,
     ROW_RANGE,
-    LAST_ROWS_ONLY,
 )
 from nlp.utils import timeit
 
@@ -37,12 +35,7 @@ def get_match_dict(categories_df):
 
 
 def get_reduced_df(df):
-    if SELECT_ROWS_BY_RANGE:
-        df = df[ROW_RANGE.first : ROW_RANGE.last]
-    elif LAST_ROWS_ONLY:
-        df = df[-LAST_ROWS_ONLY:]
-
-    return df
+        return df[ROW_RANGE.first : ROW_RANGE.last]
 
 
 def output_categories_df(categories_df):

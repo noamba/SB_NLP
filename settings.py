@@ -3,6 +3,8 @@ from collections import namedtuple
 
 import spacy
 
+select_rows = namedtuple("rows", ["first", "last"])
+
 # TODO: use Path package?
 CATEGORIES_FILE = "data/off_categories.tsv"
 
@@ -10,11 +12,7 @@ DEBUG = "Basic"  #  "Full" OR "Basic" or None
 REDUCE_CATEGORY_SET_SIZE = True
 
 # REDUCE_CATEGORY_SET_SIZE variables
-SELECT_ROWS_BY_RANGE = True
-select_rows = namedtuple("rows", ["first", "last"])
-ROW_RANGE = select_rows(10, 20)
-
-LAST_ROWS_ONLY = 300
+ROW_RANGE = select_rows(first=10, last=20)
 
 # NLP_ENG = spacy.load("en_core_web_sm")
 NLP_ENG = spacy.load("en_core_web_lg")

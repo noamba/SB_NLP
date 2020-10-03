@@ -56,6 +56,6 @@ def phrases_with_NO_categories():
 def client():
     """Returns a flask test-client"""
     app = Flask(__name__)
-    configure_routes(app)
+    configure_routes(app, reduce_category_set_size=True)
 
     return app.test_client()
