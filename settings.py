@@ -12,7 +12,7 @@ DEBUG = "Basic"  #  "Full" OR "Basic" or None
 REDUCE_CATEGORY_SET_SIZE = True
 
 # REDUCE_CATEGORY_SET_SIZE variables
-ROW_RANGE = select_rows(first=10, last=20)
+ROW_RANGE = select_rows(first=7755, last=7765)
 
 # NLP_ENG = spacy.load("en_core_web_sm")
 NLP_ENG = spacy.load("en_core_web_lg")
