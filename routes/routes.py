@@ -34,8 +34,6 @@ def configure_routes(app, reduce_category_set_size):
     def find_categories_in_phrase():
         phrase = request.args.get("text", default=DEMO_PHRASE, type=str)
 
-        matches_json = json.dumps(
+        return json.dumps(
             get_matched_categories_in_phrase(match_dict, phrase_matcher, phrase)
         )
-
-        return matches_json
