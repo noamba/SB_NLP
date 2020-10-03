@@ -13,8 +13,7 @@ from nlp.setup_phrase_match import (
 from settings import CATEGORIES_FILE, DEBUG, REDUCE_CATEGORY_SET_SIZE
 
 DEMO_PHRASE = (
-    "Blueberry juice - that`s my favourite. "
-    "But, I can take concentrated apricot juice on any given day"
+    "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
 )
 
 
