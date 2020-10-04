@@ -6,7 +6,7 @@ from nlp.prepare_data import prepare_data
 from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
 from routes.routes import configure_routes
 from routes.utils import setup_match_objects
-from settings import TESTING_CATEGORIES_FILE, TESTING_PERSIST_MATCH_OBJECTS
+from settings import TESTING_CATEGORIES_FILE
 
 
 @pytest.fixture
@@ -57,7 +57,7 @@ def client():
     app = Flask(__name__)
     match_dict, phrase_matcher = setup_match_objects(
         categories_file=TESTING_CATEGORIES_FILE,
-        persist_match_objects=TESTING_PERSIST_MATCH_OBJECTS,
+        persist_match_objects=False,
     )
     configure_routes(app, match_dict, phrase_matcher)
 

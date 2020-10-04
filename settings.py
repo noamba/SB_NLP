@@ -13,7 +13,6 @@ PERSIST_MATCH_OBJECTS = True
 
 # files TODO: use Path package?
 TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
-TESTING_PERSIST_MATCH_OBJECTS = False
 
 CATEGORIES_FILE = "data/off_categories.tsv"
 # CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
