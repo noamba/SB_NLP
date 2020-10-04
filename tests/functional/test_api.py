@@ -20,7 +20,7 @@ from nlp.match_categories import get_matched_categories_in_phrase
         (phrases_with_TWO_category(), 2),
     ],
 )
-def test_base_route_with_a_phrase_with_matches(
+def test_base_route_with_phrases(
     match_dict_fixture, phrase_match_fixture, client, phrases, expected_matches
 ):
     url_prefix = "/?text="
