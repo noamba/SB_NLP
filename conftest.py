@@ -4,8 +4,8 @@ from flask import Flask
 
 from nlp.prepare_data import prepare_data
 from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
-from routes.routes import configure_routes
-from routes.utils import setup_match_objects
+from views.routes import configure_routes
+from views.helpers import setup_match_objects
 from settings import TESTING_CATEGORIES_FILE
 
 

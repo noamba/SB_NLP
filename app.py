@@ -1,7 +1,7 @@
 from flask import Flask
 
-from routes.routes import configure_routes
-from routes.utils import setup_match_objects
+from views.routes import configure_routes
+from views.helpers import setup_match_objects
 
 app = Flask(__name__)
 
