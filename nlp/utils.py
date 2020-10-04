@@ -20,6 +20,17 @@ def timeit(func):
 
 
 @timeit
-def save_matcher_to_disk(matcher):
-    with open("data.pickle", "wb") as f:
-        pickle.dump(matcher, f)
+def save_object_to_disk(object_to_save, path):
+    print(f"Saving object to {path}...")
+
+    with open(path, "wb") as f:
+        pickle.dump(object_to_save, f)
+
+
+@timeit
+def load_objects_from_disk(path):
+    print(f"Loading object from {path}...")
+    with open(path, "rb") as f:
+        loaded_object = pickle.load(f)
+
+    return loaded_object

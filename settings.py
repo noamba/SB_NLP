@@ -5,12 +5,19 @@ import spacy
 
 select_rows = namedtuple("rows", ["first", "last"])
 
-# TODO: use Path package?
-CATEGORIES_FILE = "data/off_categories.tsv"
 
-DEBUG = "Basic"  #  "Full" OR "Basic" or None
-SAVE_MATCHER_TO_DISK = True
-REDUCE_CATEGORY_SET_SIZE = True
+DEBUG = "Basic"  #  "Full" OR "Basic" or None for level of debug output
+REDUCE_CATEGORY_SET_SIZE = False
+
+# save/load match objects
+LOAD_MATCH_OBJECTS_FROM_DISK = True
+SAVE_MATCH_OBJECTS_TO_DISK = False
+
+# files TODO: use Path package?
+CATEGORIES_FILE = "data/off_categories.tsv"
+PHRASE_MATCHER_PICKLE_FILE = "data/phrase_matcher.pickle"
+MATCH_DICT_PICKLE_FILE = "data/match_dict.pickle"
+
 
 # REDUCE_CATEGORY_SET_SIZE variables
 ROW_RANGE = select_rows(first=7755, last=7765)

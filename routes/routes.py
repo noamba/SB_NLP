@@ -10,31 +10,42 @@ from nlp.setup_phrase_match import (
     get_match_dict,
     get_phrase_matcher,
 )
-from nlp.utils import save_matcher_to_disk
+from nlp.utils import load_objects_from_disk, save_object_to_disk
 from settings import (
     CATEGORIES_FILE,
     DEBUG,
     REDUCE_CATEGORY_SET_SIZE,
-    SAVE_MATCHER_TO_DISK,
+    SAVE_MATCH_OBJECTS_TO_DISK,
+    LOAD_MATCH_OBJECTS_FROM_DISK,
+    MATCH_DICT_PICKLE_FILE,
+    PHRASE_MATCHER_PICKLE_FILE,
 )
 
 DEMO_PHRASE = "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
 
 
 def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
+    if LOAD_MATCH_OBJECTS_FROM_DISK:
+        print("Loading match objects from disk...")
+        match_dict = load_objects_from_disk(MATCH_DICT_PICKLE_FILE)
+        phrase_matcher = load_objects_from_disk(PHRASE_MATCHER_PICKLE_FILE)
+    else:
+        print("Creating match objects from scratch...")
+        # set up required objects for matching categories to a phrase
+        categories = get_categories(CATEGORIES_FILE, reduce_category_set_size)
+        prepared_data = prepare_data(categories)
 
-    # set up required objects for matching categories to a phrase
-    categories = get_categories(CATEGORIES_FILE, reduce_category_set_size)
-    prepared_data = prepare_data(categories)
+        if DEBUG == "Full":
+            output_categories_df(prepared_data)
 
-    if DEBUG == "Full":
-        output_categories_df(prepared_data)
+        match_dict = get_match_dict(prepared_data)
+        phrase_matcher = get_phrase_matcher(match_dict)
 
-    match_dict = get_match_dict(prepared_data)
-    phrase_matcher = get_phrase_matcher(match_dict)
-
-    if SAVE_MATCHER_TO_DISK:
-        save_matcher_to_disk(phrase_matcher)
+        if SAVE_MATCH_OBJECTS_TO_DISK:
+            save_object_to_disk(object_to_save=match_dict,
+                                path=MATCH_DICT_PICKLE_FILE)
+            save_object_to_disk(object_to_save=phrase_matcher,
+                                path=PHRASE_MATCHER_PICKLE_FILE)
 
     @app.route("/")
     def find_categories_in_phrase():
