@@ -24,7 +24,7 @@ from settings import (
 DEMO_PHRASE = "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
 
 
-def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
+def get_match_objects(reduce_category_set_size):
     if LOAD_MATCH_OBJECTS_FROM_DISK:
         print("Loading match objects from disk...")
         match_dict = load_objects_from_disk(MATCH_DICT_PICKLE_FILE)
@@ -46,6 +46,12 @@ def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
                                 path=MATCH_DICT_PICKLE_FILE)
             save_object_to_disk(object_to_save=phrase_matcher,
                                 path=PHRASE_MATCHER_PICKLE_FILE)
+
+    return match_dict, phrase_matcher
+
+
+def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
+    match_dict, phrase_matcher = get_match_objects(reduce_category_set_size)
 
     @app.route("/")
     def find_categories_in_phrase():
