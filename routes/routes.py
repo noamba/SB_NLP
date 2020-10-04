@@ -10,11 +10,15 @@ from nlp.setup_phrase_match import (
     get_match_dict,
     get_phrase_matcher,
 )
-from settings import CATEGORIES_FILE, DEBUG, REDUCE_CATEGORY_SET_SIZE
-
-DEMO_PHRASE = (
-    "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
+from nlp.utils import save_matcher_to_disk
+from settings import (
+    CATEGORIES_FILE,
+    DEBUG,
+    REDUCE_CATEGORY_SET_SIZE,
+    SAVE_MATCHER_TO_DISK,
 )
+
+DEMO_PHRASE = "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
 
 
 def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
@@ -28,6 +32,9 @@ def configure_routes(app, reduce_category_set_size=REDUCE_CATEGORY_SET_SIZE):
 
     match_dict = get_match_dict(prepared_data)
     phrase_matcher = get_phrase_matcher(match_dict)
+
+    if SAVE_MATCHER_TO_DISK:
+        save_matcher_to_disk(phrase_matcher)
 
     @app.route("/")
     def find_categories_in_phrase():

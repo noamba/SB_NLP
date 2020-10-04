@@ -1,3 +1,4 @@
+import pickle
 from time import perf_counter
 
 
@@ -16,3 +17,9 @@ def timeit(func):
         return result
 
     return timed
+
+
+@timeit
+def save_matcher_to_disk(matcher):
+    with open("data.pickle", "wb") as f:
+        pickle.dump(matcher, f)

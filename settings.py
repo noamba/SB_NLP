@@ -9,6 +9,7 @@ select_rows = namedtuple("rows", ["first", "last"])
 CATEGORIES_FILE = "data/off_categories.tsv"
 
 DEBUG = "Basic"  #  "Full" OR "Basic" or None
+SAVE_MATCHER_TO_DISK = True
 REDUCE_CATEGORY_SET_SIZE = True
 
 # REDUCE_CATEGORY_SET_SIZE variables
