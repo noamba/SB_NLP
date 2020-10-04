@@ -11,13 +11,13 @@ DEBUG = "Basic"  #  "Full" OR "Basic" or None for level of debug output
 # save/load match objects to disk
 PERSIST_MATCH_OBJECTS = True
 
-REDUCE_CATEGORY_SET_SIZE = True  # useful for testing/debugging
-
-ROW_RANGE = select_rows(first=7755, last=7765)  # use with REDUCE_CATEGORY_SET_SIZE
-
-
 # files TODO: use Path package?
+TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
+TESTING_PERSIST_MATCH_OBJECTS = False
+
 CATEGORIES_FILE = "data/off_categories.tsv"
+# CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
+
 PHRASE_MATCHER_PICKLE_FILE = "data/phrase_matcher.pickle"
 MATCH_DICT_PICKLE_FILE = "data/match_dict.pickle"
 
