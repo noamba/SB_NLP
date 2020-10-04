@@ -3,11 +3,8 @@ from collections import defaultdict
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
-from settings import (
-    NLP_ENG,
-    ROW_RANGE,
-)
 from nlp.utils import timeit
+from settings import NLP_ENG, ROW_RANGE
 
 
 @timeit
@@ -35,7 +32,7 @@ def get_match_dict(categories_df):
 
 
 def get_reduced_df(df):
-        return df[ROW_RANGE.first : ROW_RANGE.last]
+    return df[ROW_RANGE.first : ROW_RANGE.last]
 
 
 def output_categories_df(categories_df):
