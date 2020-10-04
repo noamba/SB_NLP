@@ -12,12 +12,12 @@ DEBUG = "Basic"  #  "Full" OR "Basic" or None for level of debug output
 PERSIST_MATCH_OBJECTS = True
 
 # files TODO: use Path package?
-PHRASE_MATCHER_PICKLE_FILE = "data/pickled_objects/phrase_matcher.pickle"
-MATCH_DICT_PICKLE_FILE = "data/pickled_objects/match_dict.pickle"
+PHRASE_MATCHER_PICKLE_FILE = "app/data/pickled_objects/phrase_matcher.pickle"
+MATCH_DICT_PICKLE_FILE = "app/data/pickled_objects/match_dict.pickle"
 
-TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
+TESTING_CATEGORIES_FILE = "app/data/off_categories_reduced.tsv"
 
-CATEGORIES_FILE = "data/off_categories.tsv"
+CATEGORIES_FILE = "app/data/off_categories.tsv"
 # CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
 
 

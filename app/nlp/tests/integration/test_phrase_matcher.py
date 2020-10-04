@@ -1,11 +1,11 @@
 import pytest
 
-from conftest import (
+from app.conftest import (
     phrases_with_ONE_category,
     phrases_with_NO_categories,
     phrases_with_TWO_category,
 )
-from nlp.match_categories import get_matched_categories_in_phrase
+from app.nlp.match_categories import get_matched_categories_in_phrase
 
 
 @pytest.mark.parametrize(

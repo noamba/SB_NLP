@@ -1,7 +1,7 @@
 import numpy as np
 
-from settings import NON_ENGLISH_LANGUAGES, NLP_ENG, TRANSLATE_TABLE
-from nlp.utils import timeit
+from app.settings import NON_ENGLISH_LANGUAGES, NLP_ENG, TRANSLATE_TABLE
+from app.nlp.utils import timeit
 
 
 def extract_language(x):

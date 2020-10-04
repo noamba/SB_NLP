@@ -25,11 +25,11 @@ export PYTHONPATH="${PYTHONPATH}:/path/to/sb_nlp"
 
 FLASK
 
-NOTE: the flask server is not for production, leave it on port 500 for now.
+NOTE: the flask server is not for production, leave it on port 5000 for now.
         When insatlling a production server switch to port 8080
 
 To run flask dev server, issue:
-    export FLASK_APP=web.py
+    export FLASK_APP=app.main
     source venv/bin/avtivate
     flask run
 

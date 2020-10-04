@@ -3,8 +3,8 @@ from collections import defaultdict
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
-from nlp.utils import timeit
-from settings import NLP_ENG
+from app.nlp.utils import timeit
+from app.settings import NLP_ENG
 
 
 @timeit

@@ -1,12 +1,12 @@
-from nlp.prepare_data import prepare_data
-from nlp.setup_phrase_match import (
+from app.nlp.prepare_data import prepare_data
+from app.nlp.setup_phrase_match import (
     get_categories,
     output_categories_df,
     get_match_dict,
     get_phrase_matcher,
 )
-from nlp.utils import save_object_to_disk, load_objects_from_disk
-from settings import (
+from app.nlp.utils import save_object_to_disk, load_objects_from_disk
+from app.settings import (
     CATEGORIES_FILE,
     DEBUG,
     PERSIST_MATCH_OBJECTS,
