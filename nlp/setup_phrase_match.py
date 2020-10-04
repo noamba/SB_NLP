@@ -4,7 +4,7 @@ import pandas as pd
 from spacy.matcher import PhraseMatcher
 
 from nlp.utils import timeit
-from settings import NLP_ENG, ROW_RANGE
+from settings import NLP_ENG
 
 
 @timeit
@@ -31,10 +31,6 @@ def get_match_dict(categories_df):
     return match_dict
 
 
-def get_reduced_df(df):
-    return df[ROW_RANGE.first : ROW_RANGE.last]
-
-
 def output_categories_df(categories_df):
     for index, row in categories_df.iterrows():
         print(
@@ -47,10 +43,7 @@ def output_categories_df(categories_df):
 
 
 @timeit
-def get_categories(categories_file, reduce_category_set_size):
+def get_categories(categories_file):
     categories_file_df = pd.read_csv(categories_file, sep="\t", header=0)
-
-    if reduce_category_set_size:
-        categories_file_df = get_reduced_df(categories_file_df)
 
     return categories_file_df["category"].astype("string")
