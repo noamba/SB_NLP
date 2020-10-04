@@ -58,6 +58,8 @@ def client():
     match_dict, phrase_matcher = setup_match_objects(
         categories_file=TESTING_CATEGORIES_FILE,
         persist_match_objects=False,
+        match_dict_pickle_file=None,
+        phrase_matcher_pickle_file=None
     )
     configure_routes(app, match_dict, phrase_matcher)
 
