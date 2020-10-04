@@ -5,13 +5,13 @@ from flask import Flask
 from nlp.prepare_data import prepare_data
 from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
 from routes.routes import configure_routes
+from routes.utils import setup_match_objects
+from settings import TESTING_CATEGORIES_FILE, TESTING_PERSIST_MATCH_OBJECTS
 
 
 @pytest.fixture
 def categories_series_fixture():
-    return pd.Series(
-        name="category", data=["Vanilla sugars", "fr:Vergeoises"]
-    )
+    return pd.Series(name="category", data=["Vanilla sugars", "fr:Vergeoises"])
 
 
 @pytest.fixture
@@ -38,8 +38,7 @@ def phrases_with_ONE_category():
 
 def phrases_with_TWO_category():
     return [
-        "I love Vanilla-sugar  but I can`t "
-        "handle vergeoises in any given day...",
+        "I love Vanilla-sugar  but I can`t do vergeoises on any given day...",
         "Where can I get that french delicacy, Vergeoises? "
         "Also, are Vanilla   sugars and plant based foods and beverages a fad?",
     ]
@@ -54,8 +53,12 @@ def phrases_with_NO_categories():
 
 @pytest.fixture
 def client():
-    """Returns a flask test-client"""
+    """Returns a flask test-client with a reduced categories list"""
     app = Flask(__name__)
-    configure_routes(app, reduce_category_set_size=True)
+    match_dict, phrase_matcher = setup_match_objects(
+        categories_file=TESTING_CATEGORIES_FILE,
+        persist_match_objects=TESTING_PERSIST_MATCH_OBJECTS,
+    )
+    configure_routes(app, match_dict, phrase_matcher)
 
     return app.test_client()

@@ -10,10 +10,10 @@ from settings import CATEGORIES_FILE
 from nlp.setup_phrase_match import get_categories, get_match_dict, get_phrase_matcher
 
 
-@pytest.mark.parametrize("reduce_category_set_size", [True, False])
-def test_get_categories(reduce_category_set_size):
+
+def test_get_categories():
     """test get_categories function"""
-    categories = get_categories(CATEGORIES_FILE, reduce_category_set_size)
+    categories = get_categories(CATEGORIES_FILE)
 
     assert type(categories) == pd.Series
     assert not categories.empty
