@@ -1,3 +1,5 @@
-venv
+venv/
 .idea
-.pytest_cache
+.pytest_cache/
+__pycache__
+*pickle
