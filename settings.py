@@ -18,8 +18,8 @@ TESTING_PERSIST_MATCH_OBJECTS = False
 CATEGORIES_FILE = "data/off_categories.tsv"
 # CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
 
-PHRASE_MATCHER_PICKLE_FILE = "data/phrase_matcher.pickle"
-MATCH_DICT_PICKLE_FILE = "data/match_dict.pickle"
+PHRASE_MATCHER_PICKLE_FILE = "data/pickled_objects/phrase_matcher.pickle"
+MATCH_DICT_PICKLE_FILE = "data/pickled_objects/match_dict.pickle"
 
 
 # NLP_ENG = spacy.load("en_core_web_sm")
