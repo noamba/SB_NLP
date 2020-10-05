@@ -8,7 +8,6 @@ def extract_language(text):
     """Return the letters signifying language, that is the letters
     before the ':' character text, if it exists. Else return the
     empty string.
-
     For example, if text is "fr:blah" "fr" will be returned.
     """
     if text is not np.nan and ":" in text:
@@ -19,9 +18,7 @@ def extract_language(text):
 
 def remove_language(text):
     """Return text without the letters and colon signifying language.
-
     For example, if text is "fr:blah" "blah" will be returned.
-
     """
     if text is not np.nan and ":" in text:
         return text.split(":")[1]
