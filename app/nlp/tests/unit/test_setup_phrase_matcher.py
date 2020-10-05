@@ -9,7 +9,6 @@ from settings import CATEGORIES_FILE
 from nlp.setup_phrase_match import get_categories, get_match_dict, get_phrase_matcher
 
 
-
 def test_get_categories():
     """test get_categories function"""
     categories = get_categories(CATEGORIES_FILE)
@@ -27,7 +26,7 @@ def test_get_match_dict(prepared_data_fixture, categories_series_fixture):
 
     # check that a representative match_dict value is one of the
     # original categories
-    assert list(match_dict.values())[0] in categories_series_fixture.to_list()
+    assert list(match_dict.values())[0].pop() in categories_series_fixture.to_list()
 
 
 def test_get_phrase_matcher_returns_PhraseMatcher(match_dict_fixture):

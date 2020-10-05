@@ -10,12 +10,14 @@ from settings import NLP_ENG
 @timeit
 def get_phrase_matcher(match_dict):
     """Create a Spacy PhraseMatcher object and add match-phrases to it.
+    The values in match_dict are the cleaned and lemmatized categories from
+    which to create the phrase-matcher.
 
     Args:
-        match_dict: {defaultdict} the data from which to create
+        match_dict: {dict} the keys of this dict to be used to create
             the phrase-matcher
 
-    Retruns: {PhraseMatcher} 
+    Returns: {PhraseMatcher} PhraseMatcher object
     """
     matcher = PhraseMatcher(NLP_ENG.vocab, validate=True)
     match_phrases = match_dict.keys()
@@ -33,21 +35,27 @@ def get_match_dict(categories_df):
     cleaned and lemmatized data in categories_df dataframe.
 
     The structure of the dict will be:
-        {match-phrase : category, ...}
-    And the result will look something like this:
-        {"bluberry juice": "Blueberry juices", "juice": "ar:juice"...}
+        {match-phrase : {category_A, category_B, ...}, ...}
+    The result will look something like this:
+        {"bluberry juice": {"Blueberry juices"},
+         "juice": {"ar:juice", "juices",...},
+         ...}
 
     Args:
         categories_df: {pandas DataFrame} includes cleaned + lemmatized strings
 
     Returns: {dict}
     """
-    match_dict = defaultdict(str)
-    # create dict from keys: cleaned + lemmatized, values: original categories
+    match_dict = defaultdict(set)
+    # create dict like so:
+    # keys: cleaned + lemmatized categories,
+    # values: original categories
+    # Note: some keys will have more than one category, e.g.:
+    # "pandoros" : {[}"it:pandoros", "fr:pandoros"}
     for index, row in categories_df.iterrows():
-        match_dict[row.match_phrase] = row.category
+        match_dict[row.match_phrase].add(row.category)
         if row.match_phrase_lemma:
-            match_dict[row.match_phrase_lemma] = row.category
+            match_dict[row.match_phrase_lemma].add(row.category)
 
     return match_dict
 

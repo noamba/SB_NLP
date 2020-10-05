@@ -61,7 +61,7 @@ def get_matched_categories_in_phrase(match_dict, matcher, phrase):
     matched_categories = []
 
     for match_string in match_strings:
-        matched_categories.append(match_dict[match_string])
+        matched_categories.extend(match_dict[match_string])
 
     if DEBUG:
         output_matches(phrase, cleaned_phrase, match_strings, matched_categories)
