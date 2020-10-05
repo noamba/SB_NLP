@@ -125,8 +125,9 @@ depending on the quality of the lemmatization but the additional data does not
 seem to create a substantial overhead on querys. Looking further into this may 
 lead to removing the English cleaned sentences from the phrase-matcher, 
 remaining only with the lemmatized sentences?
-3. Documentation (e.g. docstrings) and testing are still incomplete. 
-4. Some refactoring could be useful.
-5. For a more complicated application and/or additional dev and deployment 
+3. Add tests.
+4. Add type annotation to allow static type checking with mypy. 
+5. Some refactoring could be useful.
+6. For a more complicated application and/or additional dev and deployment 
 requirements I would consider `poetry` and/or `conda` to manage packages.
 
