@@ -6,7 +6,7 @@ import spacy
 select_rows = namedtuple("rows", ["first", "last"])
 
 
-DEBUG = "Basic"  #  "Full" OR "Basic" or None for level of debug output
+DEBUG = None  #  "Full" OR "Basic" or None for level of debug output
 
 # save/load match objects to disk
 PERSIST_MATCH_OBJECTS = True
