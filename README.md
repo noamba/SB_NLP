@@ -53,17 +53,14 @@ on network & machine speed?) - enough time to grab a cup of tea ;-)
 ## Usage
 
 ### Run a docker container from the created image 
-`docker run -v $PWD/app/data:/app/data --name match_container -p 8080:80 match_img`
+`docker run --name match_container -p 8080:80 match_img`
 
 #### Notes
 - This was tried with Linux and should be fine on mac. 
 For Windows, you may need to use `%cd%` instead of `$PWD`
-- Your local `app/data` directory will be mounted into the container. 
-If the setting `PERSIST_MATCH_OBJECTS` is set to `True` and the relevant 
-`*_PICKLE_FILE` path settings prefix is `data/`, the pickled objects will be 
-saved *on your local drive* (not within the container). This allows 
-reuse of calculated phrase-matching objects even if the docker image and/or 
-container are removed.
+- If the setting `PERSIST_MATCH_OBJECTS` is set to `True` pickled objects will be 
+saved within your container. This allows reuse of calculated phrase-matching 
+objects when the docker container is restarted.
 - This step may take a few minutes (possibly 2, depending   
 on machine speed?) when initially run as phrase-match objects need to be 
 created. If `PERSIST_MATCH_OBJECTS` is `True` this step will be faster in 
@@ -83,7 +80,7 @@ Try the following in your browser:
 
 ## Additional docker commands and testing
 
-### Stop/start the docker container
+### Stop/restart the docker container
 
 `docker stop match_container`
 
