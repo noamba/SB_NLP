@@ -4,14 +4,24 @@ from flask import request
 
 from nlp.match_categories import get_matched_categories_in_phrase
 
-DEMO_PHRASE = "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
+
+def validate(text):
+    if not text:
+        return (
+            "No relevant data given. Please provide a text parameter e.g. "
+            "?text=I+love+concentrated+apricot+juice"
+        )
 
 
 def configure_routes(app, match_dict, phrase_matcher):
     @app.route("/")
     def find_categories_in_phrase():
-        phrase = request.args.get("text", default=DEMO_PHRASE, type=str)
+        text = request.args.get("text", type=str)
+
+        error_message = validate(text)
+        if error_message:
+            return json.dumps({"error": error_message})
 
         return json.dumps(
-            get_matched_categories_in_phrase(match_dict, phrase_matcher, phrase)
+            get_matched_categories_in_phrase(match_dict, phrase_matcher, text)
         )
