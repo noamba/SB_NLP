@@ -16,7 +16,7 @@ app = Flask(__name__)
 match_dict, phrase_matcher = setup_match_objects()
 configure_routes(app, match_dict, phrase_matcher)
 
-print("\n\n*** Match application is ready ***\n\n")
+print("\n\n>>> Match application is ready <<<\n\n")
 
 if __name__ == "__main__":
     # debug=False to avoid "Restarting with stat" msg and following crash
