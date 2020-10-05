@@ -29,6 +29,8 @@ copy `match.tar.gz` file into `somedir` and extract it:
 
 `tar xvf match.tar.gz`
 
+`rm match.tar.gz`  # to minimize context later given to docker
+
 ### Settings
 
 Settings can be found in `settings.py`. Notable are:
