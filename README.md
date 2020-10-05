@@ -62,9 +62,11 @@ For Windows, you may need to use `%cd%` instead of `$PWD`
 saved within your container. This allows reuse of calculated phrase-matching 
 objects when the docker container is restarted.
 - This step may take a few minutes (possibly 2, depending   
-on machine speed?) when initially run as phrase-match objects need to be 
-created. If `PERSIST_MATCH_OBJECTS` is `True` this step will be faster in 
-future uses. 
+on machine speed?). 
+- The interface will be ready when the message 
+">>> Match application is ready <<<" displayed in the container log (and output).
+- If `PERSIST_MATCH_OBJECTS` is `True` this step will be faster in 
+future uses.
 
 ### Using the interface
 Once the container is up and running `localhost` should 
@@ -108,7 +110,7 @@ Currently example tests are in:
 - Create a `python 3.6` virtual environment (you may need to install 
 `virtualenv`)
 - Activate the virtual environment and issue:
-`pytest -v`
+`cd app && pytest -v`
 
 
 ## Possible next steps
