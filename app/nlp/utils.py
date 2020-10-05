@@ -1,8 +1,14 @@
 import pickle
 from time import perf_counter, sleep
 
+from settings import DEBUG
+
 
 def timeit(func):
+
+    if not DEBUG:
+        return func
+
     def timed(*args, **kw):
         start = perf_counter()
         result = func(*args, **kw)
