@@ -34,6 +34,11 @@ To run flask dev server, issue:
     flask run
 
 Example URLs:
+DEV SERVER on port 5000 -
 http://127.0.0.1:5000/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices
-
 http://127.0.0.1:5000/?text=I+love+concentrated+apricot+juice
+
+production port 8080 -
+http://127.0.0.1:8080/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices
+
+http://127.0.0.1:8080/?text=I+love+concentrated+apricot+juice
