@@ -19,6 +19,8 @@ from nlp.match_categories import get_matched_categories_in_phrase
 def test_find_one_category_in_phrase(
     match_dict_fixture, phrase_match_fixture, phrases, number_or_matches
 ):
+    """Integration test for the process of finding matching categories in a
+     phrase"""
     for phrase in phrases:
         matched_categories = get_matched_categories_in_phrase(
             match_dict_fixture, phrase_match_fixture, phrase
