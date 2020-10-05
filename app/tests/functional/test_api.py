@@ -23,6 +23,8 @@ from nlp.match_categories import get_matched_categories_in_phrase
 def test_base_route_with_phrases(
     match_dict_fixture, phrase_match_fixture, client, phrases, expected_matches
 ):
+    """Functional test using the API to test the process of finding matching
+     categories in a phrase"""
     url_prefix = "/?text="
 
     for phrase in phrases:
