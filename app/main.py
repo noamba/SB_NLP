@@ -1,8 +1,9 @@
 """
-To run flask application in dev, either:
-    1) "cd app && export FLASK_APP=main" then "flask run" OR "python main.py"
-        This is as required for the dockerized version which will only copy app/
-    2) debug via pycharm with working dir set as app/
+Note for developer:
+To run flask application in dev:
+    Activated, "cd app && export FLASK_APP=main" then "flask run" OR
+        "python main.py". This setup is as required for the dockerized
+        version which will only copy app/
 """
 from flask import Flask
 
@@ -18,5 +19,5 @@ configure_routes(app, match_dict, phrase_matcher)
 print("\n\n>>> Match application is ready <<<\n\n")
 
 if __name__ == "__main__":
-    # debug=False to avoid "Restarting with stat" msg and following crash
+    # Note: debug=False to avoid "Restarting with stat" msg and following crash
     app.run(debug=False)
