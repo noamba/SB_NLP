@@ -7,7 +7,7 @@ from nlp.utils import timeit
 
 
 def match_phrases(phrase, matcher):
-    """Return the match-strings found in giben phrase using the given Spacy
+    """Return the match-strings found in given phrase using the given Spacy
     PhraseMatcher object
 
     Args:
@@ -36,7 +36,7 @@ def output_matches(phrase, cleaned_phrase, match_strings, matched_categories):
     pprint(match_strings)
     print("Matched categories:")
     pprint(matched_categories)
-    print("\n\n")
+    print("\n")
 
 
 def clean_string(phrase):
