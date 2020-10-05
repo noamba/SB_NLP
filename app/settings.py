@@ -24,7 +24,7 @@ CATEGORIES_FILE = "data/off_categories.tsv"
 # NLP_ENG = spacy.load("en_core_web_sm")
 NLP_ENG = spacy.load("en_core_web_lg")
 
-PUNCT_TO_REMOVE = set(string.punctuation) - {"`"}  # excluding asterix
+PUNCT_TO_REMOVE = set(string.punctuation) - {"'"}  # excluding apostrophe
 
 TRANSLATE_TABLE = {ord(punctuation_char): " " for punctuation_char in PUNCT_TO_REMOVE}
 
