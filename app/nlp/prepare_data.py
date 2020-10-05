@@ -4,25 +4,46 @@ from settings import NON_ENGLISH_LANGUAGES, NLP_ENG, TRANSLATE_TABLE
 from nlp.utils import timeit
 
 
-def extract_language(x):
-    if x is not np.nan and ":" in x:
-        return x.split(":")[0]
+def extract_language(text):
+    """Return the letters signifying language, that is the letters
+    before the ':' character text, if it exists. Else return the
+    empty string.
+
+    For example, if text is "fr:blah" "fr" will be returned.
+    """
+    if text is not np.nan and ":" in text:
+        return text.split(":")[0]
     else:
         return ""
 
 
-def remove_language(x):
-    if x is not np.nan and ":" in x:
-        return x.split(":")[1]
+def remove_language(text):
+    """Return text without the letters and colon signifying language.
+
+    For example, if text is "fr:blah" "blah" will be returned.
+
+    """
+    if text is not np.nan and ":" in text:
+        return text.split(":")[1]
     else:
-        return x
+        return text
 
 
-def remove_punct(x):
-    return x.translate(TRANSLATE_TABLE)
+def remove_punct(text):
+    return text.translate(TRANSLATE_TABLE)
+
 
 @timeit
 def add_lemma(categories_df):
+    """Add the lemma of a each match_phrase string in categories_df if 
+    it is in English. Add the lemma in a new column.
+    
+    Args:
+        categories_df: {pandas DataFrame} a DataFrame with strings in 
+            the match_phrase column
+    
+    Returns: {pandas DataFrame} with the additional match_phrase_lemma column
+    """
 
     # TODO: Can try to optimize time for this function - it's quite slow
 
@@ -39,8 +60,17 @@ def add_lemma(categories_df):
 
     return categories_df.apply(add_lemma_to_row, axis=1)
 
+
 @timeit
 def prepare_data(categories_series):
+    """Clean the strings in categories_series and add lemma for english sentences.
+
+    Args:
+        categories_series: {pandas Series} a series of strings
+
+    Returns: {pandas DataFrame} the cleaned strings with an additional 
+            column for the english lemmatized strings
+    """
     # drop missing values
     categories_series = categories_series.dropna()
 
