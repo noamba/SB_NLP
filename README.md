@@ -10,35 +10,35 @@
 ## Introduction
 This application follows the instructions in `TASK_INSTRUCTIONS.md`. 
 
-It uses `Spacy`, `pandas`, `flask`, `uswgi` and `nginx` to create a REST 
+It uses `Spacy`, `pandas`, `flask`, `uswgi`, `nginx` and `docker` to create a REST 
 micro-service that takes as input a string parameter containing natural 
 language in any relevant language, and returns a list of matched categories 
 from Open Food Facts (see `app/data/off_categories.tsv`) 
-independent of case and plurality and punctuation.
+independent of case, plurality and punctuation.
 
 ## Installation and setup
 
 ### Docker
 Make sure docker is installed on your machine,
-see instructions here: https://docs.docker.com/get-docker/
+to install see instructions here: https://docs.docker.com/get-docker/
 
 ### Files
-copy `match.tar.gz` file into `somedir` and extract it:
+copy `match.tar.gz` file into `somedir` and then:
 
 `cd somedir`
 
 `tar xvf match.tar.gz`
 
-`rm match.tar.gz`  # to minimize context later given to docker
+`rm match.tar.gz`  # this is recommended to minimize the context given to docker
 
 ### Settings
 
-Settings can be found in `settings.py`. Notable are:
+Settings can be found in `settings.py`. You don't need to change anything.
+Notable settings are:
 
 `PERSIST_MATCH_OBJECTS` - Save artifacts for future use. Defaults to `True`.
 
-`DEBUG` - Sets level of debug messages sent to output. 
-Defaults to `None`.
+`DEBUG` - Sets level of debug messages sent to output. Defaults to `None`.
 
 
 ### Build the docker image
@@ -56,13 +56,12 @@ on network & machine speed?) - enough time to grab a cup of tea ;-)
 `docker run --name match_container -p 8080:80 match_img`
 
 #### Notes
-- This was tried with Linux and should be fine on mac. 
+- This was tried with Linux and should be fine on Mac. 
 For Windows, you may need to use `%cd%` instead of `$PWD`
 - If the setting `PERSIST_MATCH_OBJECTS` is set to `True` pickled objects will be 
 saved within your container. This allows reuse of calculated phrase-matching 
 objects when the docker container is restarted.
-- This step may take a few minutes (possibly 2, depending   
-on machine speed?). 
+- This step may take a few minutes (possibly 2, depending on machine speed?). 
 - The interface will be ready when the message 
 ">>> Match application is ready <<<" displayed in the container log (and output).
 - If `PERSIST_MATCH_OBJECTS` is `True` this step will be faster in 
