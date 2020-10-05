@@ -37,7 +37,7 @@ Settings can be found in `settings.py`. Notable are:
 
 `PERSIST_MATCH_OBJECTS` - Save artifacts for future use. Defaults to `True`.
 
-`DEBUG` - Sets level of debug messages (e.g. timings) sent to output. 
+`DEBUG` - Sets level of debug messages sent to output. 
 Defaults to `None`.
 
 
