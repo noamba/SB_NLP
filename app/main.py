@@ -10,7 +10,6 @@ from views.routes import configure_routes
 from views.helpers import setup_match_objects
 
 
-print(__name__)
 app = Flask(__name__)
 
 match_dict, phrase_matcher = setup_match_objects()
