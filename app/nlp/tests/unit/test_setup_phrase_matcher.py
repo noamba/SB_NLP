@@ -5,8 +5,8 @@ import collections
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
-from app.settings import CATEGORIES_FILE
-from app.nlp.setup_phrase_match import get_categories, get_match_dict, get_phrase_matcher
+from settings import CATEGORIES_FILE
+from nlp.setup_phrase_match import get_categories, get_match_dict, get_phrase_matcher
 
 
 

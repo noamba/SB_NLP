@@ -2,7 +2,7 @@ import json
 
 from flask import request
 
-from app.nlp.match_categories import get_matched_categories_in_phrase
+from nlp.match_categories import get_matched_categories_in_phrase
 
 DEMO_PHRASE = "I love Vanilla-sugar  but I can`t handle vergeoises in any given day..."
 

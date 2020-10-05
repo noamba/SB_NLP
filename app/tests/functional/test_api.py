@@ -4,12 +4,12 @@ from urllib.parse import quote_plus
 
 import pytest
 
-from app.conftest import (
+from conftest import (
     phrases_with_ONE_category,
     phrases_with_NO_categories,
     phrases_with_TWO_category,
 )
-from app.nlp.match_categories import get_matched_categories_in_phrase
+from nlp.match_categories import get_matched_categories_in_phrase
 
 
 @pytest.mark.parametrize(

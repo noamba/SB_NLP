@@ -2,11 +2,11 @@ import pandas as pd
 import pytest
 from flask import Flask
 
-from app.nlp.prepare_data import prepare_data
-from app.nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
-from app.views.routes import configure_routes
-from app.views.helpers import setup_match_objects
-from app.settings import TESTING_CATEGORIES_FILE
+from nlp.prepare_data import prepare_data
+from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
+from views.routes import configure_routes
+from views.helpers import setup_match_objects
+from settings import TESTING_CATEGORIES_FILE
 
 
 @pytest.fixture
