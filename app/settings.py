@@ -1,10 +1,6 @@
 import string
-from collections import namedtuple
 
 import spacy
-
-select_rows = namedtuple("rows", ["first", "last"])
-
 
 DEBUG = None  #  "Full" OR "Basic" OR None for level of debug output
 
@@ -19,8 +15,6 @@ TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
 CATEGORIES_FILE = "data/off_categories.tsv"
 # CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
 
-
-# NLP_ENG = spacy.load("en_core_web_sm")
 NLP_ENG = spacy.load("en_core_web_lg")
 
 PUNCT_TO_REMOVE = set(string.punctuation) - {"'"}  # excluding apostrophe
