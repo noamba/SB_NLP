@@ -65,9 +65,9 @@ For Windows, you may need to use `%cd%` instead of `$PWD`
 - If the setting `PERSIST_MATCH_OBJECTS` is set to `True` pickled objects will be 
 saved within your container. This allows reuse of calculated phrase-matching 
 objects when the docker container is restarted.
-- This step may take a few minutes (possibly 2, depending on machine speed?). 
-- The interface will be ready when the message 
-">>> Match application is ready <<<" displayed in the container log (and output).
+- This step may take a few minutes (depending on machine speed). The interface 
+will be ready when the message ">>> Match application is ready <<<" is displayed 
+in the container log (and output).
 - If `PERSIST_MATCH_OBJECTS` is `True` this step will be faster in 
 future uses.
 
