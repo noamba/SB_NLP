@@ -124,6 +124,8 @@ Follow instructions in
 [To run tests in a dev environment](#to-run-tests-in-a-dev-environment). 
 Then, activated in the `app` dir, issue: `python main.py`
 
+**NOTE: The Flask server runs on port 5000**
+
 
 ## Possible next steps
 1. NLP nay be improved. For example: There are more than 40 
