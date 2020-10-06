@@ -1,8 +1,7 @@
 import re
-from pprint import pprint
 
 from nlp.prepare_data import remove_punct
-from nlp.utils import timeit, lemmatize
+from nlp.utils import timeit, lemmatize, output_matches
 from settings import NLP_ENG, DEBUG
 
 
@@ -27,16 +26,6 @@ def match_phrases(phrase, matcher):
         match_strings.add(span.text)
 
     return match_strings
-
-
-def output_matches(phrase, cleaned_phrase, match_strings, matched_categories):
-    print("Phrase:", phrase)
-    print("Cleaned phrase:", cleaned_phrase)
-    print(f"Matched strings:")
-    pprint(match_strings)
-    print("Matched categories:")
-    pprint(matched_categories)
-    print("\n")
 
 
 def clean_string(phrase):

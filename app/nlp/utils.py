@@ -1,4 +1,5 @@
 import pickle
+from pprint import pprint
 from time import perf_counter, sleep
 
 from settings import DEBUG, NLP_ENG
@@ -59,3 +60,14 @@ def lemmatize(phrase):
         lemmatized_list.append(token.lemma_)
 
     return " ".join(lemmatized_list)
+
+
+def output_matches(phrase, cleaned_phrase, match_strings, matched_categories):
+    """Send data to output"""
+    print("Phrase:", phrase)
+    print("Cleaned phrase:", cleaned_phrase)
+    print(f"Matched strings:")
+    pprint(match_strings)
+    print("Matched categories:")
+    pprint(matched_categories)
+    print("\n")
