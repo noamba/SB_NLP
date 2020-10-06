@@ -5,7 +5,7 @@ from nlp.utils import timeit, lemmatize, output_matches
 from settings import NLP_ENG, DEBUG
 
 
-def match_phrases(phrase, matcher):
+def get_matches(phrase, matcher):
     """Return the match-strings found in given phrase using the given Spacy
     PhraseMatcher object
 
@@ -52,8 +52,8 @@ def get_matched_categories_in_phrase(match_dict, matcher, phrase):
     """
     cleaned_phrase = clean_string(phrase)
     lemmatized_phrase = lemmatize(cleaned_phrase)
-    match_strings = match_phrases(lemmatized_phrase, matcher)
-    match_strings.update(match_phrases(cleaned_phrase, matcher))
+    match_strings = get_matches(lemmatized_phrase, matcher)
+    match_strings.update(get_matches(cleaned_phrase, matcher))
 
     matched_categories = []
 
