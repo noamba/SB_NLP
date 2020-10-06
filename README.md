@@ -17,6 +17,11 @@ language in any relevant language, and returns a list of matched categories
 from Open Food Facts (see `app/data/off_categories.tsv`) 
 independent of case, plurality and punctuation.
 
+The phrase-matching object is created (or loaded from disk) at application
+startup. This takes a while, but, it allows for the more important 
+*quick responses* from the API 
+endpoint when searching for matching categories in a phrase.
+
 ## Requirements
 Recommended: 16 GB RAM (though 8 should probably be enough).
 
@@ -115,21 +120,16 @@ Currently example tests are in:
 
 
 ## Possible next steps
-1. There are more than 40 languages in `app/data/off_categories.tsv`. I used 
-`Spacy`'s english large pretrained statistical model to lemmatize 
-english categories. It seems `Spacy` has models for about 15 languages 
-(including a `Multi-language` model) - those could be used to lemmatize
- additional languages. Other packages (e.g. `NLTK`) may be useful for this 
- as well. 
-2. For English categories, the application currently tries to match both cleaned match-phrases and 
-lemmatized phrases. The lemmatized phrases may be enough, 
-depending on the quality of the lemmatization but the additional data does not 
-seem to create a substantial overhead on querys. Looking further into this may 
-lead to removing the English cleaned sentences from the phrase-matcher, 
-remaining only with the lemmatized sentences?
-3. Add tests.
+1. NLP nay be improved. For example: There are more than 40 
+languages in the `off_categories.tsv` file. I used 
+`Spacy`'s large English model to lemmatize all categories. It seems `Spacy` 
+has models for about 15 languages (including a `Multi-language` model) - 
+those could be used to lemmatize specific languages better. 
+Other packages (e.g. `NLTK`) may be useful for this as well. 
+2. Add tests: For example, I did not test all units (functions).
+3. Persist data in a production level DB (perhaps Postgres/Redis/Mongo?) 
+instead of a file.
 4. Add type annotation to allow static type checking with mypy. 
-5. Some refactoring could be useful.
-6. For a more complicated application and/or additional dev and deployment 
+5. For a more complicated application and/or additional dev and deployment 
 requirements I would consider `poetry` and/or `conda` to manage packages.
 
