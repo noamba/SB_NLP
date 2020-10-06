@@ -23,8 +23,8 @@ def get_phrase_matcher(match_dict):
     match_phrases = match_dict.keys()
 
     # Using make_doc to speed things up
-    patterns = [NLP_ENG.make_doc(match_phrase) for match_phrase in match_phrases]
-    matcher.add("Categories", None, *patterns)
+    patterns = (NLP_ENG.make_doc(match_phrase) for match_phrase in match_phrases)
+    matcher.add("Categories", patterns)
 
     return matcher
 
