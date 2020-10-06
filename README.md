@@ -2,6 +2,7 @@
 
 ## Table of contents
 * [Introduction](#introduction)
+* [Requirements](#requirements)
 * [Installation and setup](#installation-and-setup)
 * [Usage](#Usage)
 * [Additional docker commands and testing](#additional-docker-commands-and-testing)
@@ -15,6 +16,9 @@ micro-service that takes as input a string parameter containing natural
 language in any relevant language, and returns a list of matched categories 
 from Open Food Facts (see `app/data/off_categories.tsv`) 
 independent of case, plurality and punctuation.
+
+## Requirements
+Recommended: 16 GB RAM (though 8 should probably be enough).
 
 ## Installation and setup
 
