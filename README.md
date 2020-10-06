@@ -109,14 +109,20 @@ Currently example tests are in:
 #### To run all tests in the docker container
 - Connect to the running container with
 `docker exec -it match_container /bin/bash`
-- Issue 
-`pytest -v`
+- Issue: `pytest -v`
 
-#### To run all tests in a dev environment
+#### To run tests in a dev environment
 - Create a `python 3.6` virtual environment (you may need to install 
 `virtualenv`)
-- Activate the virtual environment and issue:
-`cd app && pytest -v`
+- issue: `export FLASK_APP=main`
+- Activate the virtual environment and cd to `app` dir: `cd app`
+- issue: `pytest -v`
+
+#### To run the app in a dev environment
+
+Follow instructions in 
+[To run tests in a dev environment](#to-run-tests-in-a-dev-environment). 
+Then, activated in the `app` dir, issue: `python main.py`
 
 
 ## Possible next steps
