@@ -6,12 +6,11 @@ import spacy
 select_rows = namedtuple("rows", ["first", "last"])
 
 
-DEBUG = None  #  "Full" OR "Basic" or None for level of debug output
+DEBUG = None  #  "Full" OR "Basic" OR None for level of debug output
 
 # save/load match objects to disk
 PERSIST_MATCH_OBJECTS = True
 
-# files TODO: use Path package?
 PHRASE_MATCHER_PICKLE_FILE = "data/pickled_objects/phrase_matcher.pickle"
 MATCH_DICT_PICKLE_FILE = "data/pickled_objects/match_dict.pickle"
 

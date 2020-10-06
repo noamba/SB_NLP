@@ -1,7 +1,7 @@
 import pickle
 from time import perf_counter, sleep
 
-from settings import DEBUG
+from settings import DEBUG, NLP_ENG
 
 
 def timeit(func):
@@ -46,3 +46,16 @@ def load_objects_from_disk(path):
     sleep(1)  # TODO: This may be needed to avoid a save/load issue with docker?
 
     return loaded_object
+
+
+def lemmatize(phrase):
+    """Lemmatize words in the phrase.
+    Note: The Space large English model includes some foreign words.
+    """
+    doc = NLP_ENG(phrase)
+
+    lemmatized_list = []
+    for token in doc:
+        lemmatized_list.append(token.lemma_)
+
+    return " ".join(lemmatized_list)

@@ -2,8 +2,8 @@ import re
 from pprint import pprint
 
 from nlp.prepare_data import remove_punct
+from nlp.utils import timeit, lemmatize
 from settings import NLP_ENG, DEBUG
-from nlp.utils import timeit
 
 
 def match_phrases(phrase, matcher):
@@ -48,6 +48,11 @@ def clean_string(phrase):
 def get_matched_categories_in_phrase(match_dict, matcher, phrase):
     """Return the matched categories found in the given phrase.
 
+    For each phrase try to match on:
+        - The cleaned phrase *and*
+        - The cleaned lemmatized phrase
+    This will improve matches on non-English words/phrases.
+
     Args:
         match_dict: {dict} dict of match-phrase keys and category values
         matcher: {Spacy PhraseMatcher} a PhraseMatcher object with category
@@ -57,7 +62,10 @@ def get_matched_categories_in_phrase(match_dict, matcher, phrase):
     Returns: {list} the matched categories
     """
     cleaned_phrase = clean_string(phrase)
-    match_strings = match_phrases(cleaned_phrase, matcher)
+    lemmatized_phrase = lemmatize(cleaned_phrase)
+    match_strings = match_phrases(lemmatized_phrase, matcher)
+    match_strings.update(match_phrases(cleaned_phrase, matcher))
+
     matched_categories = []
 
     for match_string in match_strings:

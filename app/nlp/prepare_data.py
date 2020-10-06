@@ -1,7 +1,7 @@
 import numpy as np
 
-from settings import NON_ENGLISH_LANGUAGES, NLP_ENG, TRANSLATE_TABLE
-from nlp.utils import timeit
+from nlp.utils import timeit, lemmatize
+from settings import TRANSLATE_TABLE
 
 
 def extract_language(text):
@@ -32,27 +32,22 @@ def remove_punct(text):
 
 @timeit
 def add_lemma(categories_df):
-    """Add the lemma of a each match_phrase string in categories_df if 
-    it is in English. Add the lemma in a new column.
+    """Add the lemma of each clean_category string in categories_df
+    to a new column.
     
     Args:
         categories_df: {pandas DataFrame} a DataFrame with strings in 
-            the match_phrase column
+            the clean_category column
     
-    Returns: {pandas DataFrame} with the additional match_phrase_lemma column
+    Returns: {pandas DataFrame} with the additional clean_category_lemma column
     """
 
     # TODO: Can try to optimize time for this function - it's quite slow
 
-    categories_df["match_phrase_lemma"] = ""
+    categories_df["clean_category_lemma"] = ""
 
     def add_lemma_to_row(row):
-        if row.language in NON_ENGLISH_LANGUAGES:  # currently lemmatize only english
-            return row
-
-        doc = NLP_ENG(row.match_phrase)
-        row.match_phrase_lemma = " ".join([token.lemma_ for token in doc])
-
+        row.clean_category_lemma = lemmatize(row.clean_category)
         return row
 
     return categories_df.apply(add_lemma_to_row, axis=1)
@@ -77,33 +72,33 @@ def prepare_data(categories_series):
     # create df
     categories_df = categories_series.to_frame()
 
-    # add match_phrase column
-    categories_df["match_phrase"] = categories_df["category"]
+    # add clean_category column
+    categories_df["clean_category"] = categories_df["category"]
 
-    # lower match_phrase
-    categories_df["match_phrase"] = categories_df["match_phrase"].str.lower()
+    # lower clean_category
+    categories_df.clean_category = categories_df.clean_category.str.lower()
 
     # create and populate language column
-    categories_df["language"] = categories_df.match_phrase.apply(extract_language)
+    categories_df["language"] = categories_df.clean_category.apply(extract_language)
 
-    # remove language from match phrase
-    categories_df.match_phrase = categories_df.match_phrase.apply(remove_language)
+    # remove language from clean_category
+    categories_df.clean_category = categories_df.clean_category.apply(remove_language)
 
-    # remove punctuation from match phrase
-    categories_df.match_phrase = categories_df.match_phrase.apply(remove_punct)
+    # remove punctuation from clean_category
+    categories_df.clean_category = categories_df.clean_category.apply(remove_punct)
 
-    # remove spaces on left side
-    categories_df.match_phrase = categories_df.match_phrase.str.lstrip()
+    # remove from clean_category spaces on left side
+    categories_df.clean_category = categories_df.clean_category.str.lstrip()
 
-    # remove spaces on left side
-    categories_df.match_phrase = categories_df.match_phrase.str.rstrip()
+    # remove from clean_category spaces on right side
+    categories_df.clean_category = categories_df.clean_category.str.rstrip()
 
-    # replace extra spaces
-    categories_df.match_phrase = categories_df.match_phrase.replace(
+    # replace extra spaces in from clean_category
+    categories_df.clean_category = categories_df.clean_category.replace(
         r"\s+", " ", regex=True
     )
 
-    # add a column of lemmatized strings
+    # add to the df a column of lemmatized clean_category
     categories_df = add_lemma(categories_df)
 
     return categories_df
