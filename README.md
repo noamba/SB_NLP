@@ -98,14 +98,12 @@ Currently example tests are in:
 - `app/nlp/tests/unit`
 
 #### To run all tests in the docker container
-
 - Connect to the running container with
 `docker exec -it match_container /bin/bash`
 - Issue 
 `pytest -v`
 
-#### To run all tests not within the docker container
-
+#### To run all tests in a dev environment
 - Create a `python 3.6` virtual environment (you may need to install 
 `virtualenv`)
 - Activate the virtual environment and issue:
