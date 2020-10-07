@@ -30,15 +30,6 @@ Recommended: 16 GB RAM (though 8 should probably be enough).
 Make sure docker is installed on your machine,
 to install see instructions here: https://docs.docker.com/get-docker/
 
-### Files
-copy `match.tar.gz` file into `somedir` and then:
-
-`cd somedir`
-
-`tar xvf match.tar.gz`
-
-`rm match.tar.gz`  # this is recommended to minimize the context given to docker
-
 ### Settings
 
 Settings can be found in `settings.py`. You don't need to change anything.
