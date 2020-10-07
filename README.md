@@ -10,7 +10,7 @@
 
 ## Introduction
 This application follows the instructions in the provided 
-`TASK_INSTRUCTIONS.md`. It uses 
+`TASK_INSTRUCTIONS.png`. It uses 
 `Spacy`, `pandas`, `flask`, `uswgi`, `nginx` and `docker` to create a REST 
 micro-service that takes as input a string parameter containing natural 
 language in any relevant language, and returns a list of matched categories 
