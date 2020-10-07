@@ -1,4 +1,4 @@
-# OFF (Open Food Facts) Category Match API exercise
+# Category Match API exercise
 
 ## Table of contents
 * [Introduction](#introduction)
@@ -9,12 +9,11 @@
 * [Possible next steps](#possible-next-steps)
 
 ## Introduction
-This application follows the instructions in `TASK_INSTRUCTIONS.md`. 
-
-It uses `Spacy`, `pandas`, `flask`, `uswgi`, `nginx` and `docker` to create a REST 
+This application follows the instructions in the provided 
+`TASK_INSTRUCTIONS.md`. It uses 
+`Spacy`, `pandas`, `flask`, `uswgi`, `nginx` and `docker` to create a REST 
 micro-service that takes as input a string parameter containing natural 
 language in any relevant language, and returns a list of matched categories 
-from Open Food Facts (see `app/data/off_categories.tsv`) 
 independent of case, plurality and punctuation.
 
 The phrase-matching object is created (or loaded from disk) at application
