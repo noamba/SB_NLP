@@ -32,7 +32,7 @@ to install see instructions here: https://docs.docker.com/get-docker/
 
 ### Settings
 
-Settings can be found in `settings.py`. You don't need to change anything.
+Settings can be found in `app/settings.py`. You don't need to change anything.
 Notable settings are:
 
 `PERSIST_MATCH_OBJECTS` - Save artifacts for future use. Defaults to `True`.
