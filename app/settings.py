@@ -10,7 +10,8 @@ PERSIST_MATCH_OBJECTS = True
 PHRASE_MATCHER_PICKLE_FILE = "data/pickled_objects/phrase_matcher.pickle"
 MATCH_DICT_PICKLE_FILE = "data/pickled_objects/match_dict.pickle"
 
-TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
+# TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
+TESTING_CATEGORIES_FILE = "data/off_categories_1000.tsv"
 
 CATEGORIES_FILE = "data/off_categories.tsv"
 # CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
