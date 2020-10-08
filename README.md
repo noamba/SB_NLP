@@ -128,8 +128,6 @@ Other packages (e.g. `NLTK`) may be useful for this as well.
 - Persist data in a production level DB (perhaps Postgres/Redis/Mongo?) 
 instead of a file.
 - Add type annotation to allow static type checking with mypy. 
-- Refactor to simplify and by that reduce bug-risk and increase 
-maintainability and extendability.
 - Optimize speed and memory footprint of the initial match-phrase objects 
 creation.
 - Deploy to AWS.
