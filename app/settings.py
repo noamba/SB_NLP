@@ -2,7 +2,7 @@ import string
 
 import spacy
 
-DEBUG = "Basic"  #  "Full" OR "Basic" OR None for level of debug output
+DEBUG = None  #  "Full" OR "Basic" OR None for level of debug output
 
 # save/load match objects to disk
 PERSIST_MATCH_OBJECTS = True
