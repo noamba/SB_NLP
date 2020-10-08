@@ -2,7 +2,7 @@ import string
 
 import spacy
 
-DEBUG = None  #  "Full" OR "Basic" OR None for level of debug output
+DEBUG = "Basic"  #  "Full" OR "Basic" OR None for level of debug output
 
 # save/load match objects to disk
 PERSIST_MATCH_OBJECTS = True
@@ -10,11 +10,11 @@ PERSIST_MATCH_OBJECTS = True
 PHRASE_MATCHER_PICKLE_FILE = "data/pickled_objects/phrase_matcher.pickle"
 MATCH_DICT_PICKLE_FILE = "data/pickled_objects/match_dict.pickle"
 
-TESTING_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
-# TESTING_CATEGORIES_FILE = "data/off_categories_1000.tsv"
+TESTING_10_CATEGORIES_FILE = "data/off_categories_reduced.tsv"
+TESTING_1000_CATEGORIES_FILE = "data/off_categories_1000.tsv"
 
 CATEGORIES_FILE = "data/off_categories.tsv"
-# CATEGORIES_FILE = TESTING_CATEGORIES_FILE  # useful for testing/debugging
+# CATEGORIES_FILE = TESTING_1000_CATEGORIES_FILE  # useful for testing/debugging
 
 NLP_ENG = spacy.load("en_core_web_lg")
 

@@ -6,7 +6,7 @@ from nlp.prepare_data import prepare_data_set
 from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
 from views.routes import configure_routes
 from views.helpers import setup_match_objects
-from settings import TESTING_CATEGORIES_FILE
+from settings import TESTING_10_CATEGORIES_FILE
 
 
 @pytest.fixture
@@ -57,7 +57,7 @@ def client():
     """Returns a flask test-client with a reduced categories list"""
     app = Flask(__name__)
     match_dict, phrase_matcher = setup_match_objects(
-        categories_file=TESTING_CATEGORIES_FILE,
+        categories_file=TESTING_10_CATEGORIES_FILE,
         persist_match_objects=False,
         match_dict_pickle_file=None,
         phrase_matcher_pickle_file=None
