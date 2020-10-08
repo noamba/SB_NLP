@@ -6,7 +6,7 @@ from nlp.setup_phrase_match import (
     get_match_dict,
     get_phrase_matcher,
 )
-from nlp.utils import save_object_to_disk, load_objects_from_disk
+from nlp.utils import save_object_to_disk, load_objects_from_disk, timeit
 from settings import (
     CATEGORIES_FILE,
     PERSIST_MATCH_OBJECTS,
@@ -15,7 +15,7 @@ from settings import (
     DEBUG,
 )
 
-
+@timeit
 def create_match_objects(
     categories_file,
     persist_match_objects,
@@ -52,7 +52,7 @@ def create_match_objects(
 
     return match_dict, phrase_matcher
 
-
+@timeit
 def setup_match_objects(
     categories_file=CATEGORIES_FILE,
     persist_match_objects=PERSIST_MATCH_OBJECTS,
