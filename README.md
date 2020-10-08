@@ -5,7 +5,7 @@
 * [Requirements](#requirements)
 * [Installation and setup](#installation-and-setup)
 * [Usage](#Usage)
-* [Additional docker commands and testing](#additional-docker-commands-and-testing)
+* [Additional docker commands testing and running in a dev environment](#additional-docker-commands-testing-and-running-in-a-dev-environment)
 * [Possible next steps](#possible-next-steps)
 
 ## Introduction
@@ -109,7 +109,7 @@ Try the following in your browser:
 `http://127.0.0.1:8080/?text=Who+ordered+Vergeoises?`
 
 
-## Additional docker commands and testing
+## Additional docker commands, testing and running in a dev environment
 
 ### Stop/restart the docker container
 
@@ -138,7 +138,7 @@ Issue: `docker exec -it match_container /bin/bash -c "pytest -v"`
 - Activate the virtual environment and cd to the `app` dir: `cd app`
 - Issue: `pytest -v`
 
-#### To run the app in a dev environment
+### To run the app in a dev environment
 
 Follow instructions in 
 [To run tests in a dev environment](#to-run-tests-in-a-dev-environment). 
