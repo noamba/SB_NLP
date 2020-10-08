@@ -22,6 +22,10 @@ def configure_routes(app, match_dict, phrase_matcher):
         if error_message:
             return json.dumps({"error": error_message})
 
+        # TODO: The result is neater but, it may be safer to have
+        #   ensure_ascii=True.
+        #   see https://stackoverflow.com/questions/40412714/using-json-dumps-with-ensure-ascii-true
         return json.dumps(
-            list(get_matched_categories_in_phrase(match_dict, phrase_matcher, text))
+            list(get_matched_categories_in_phrase(match_dict, phrase_matcher, text)),
+            ensure_ascii=False,
         )
