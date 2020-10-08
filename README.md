@@ -34,9 +34,10 @@ to install see instructions here: https://docs.docker.com/get-docker/
 ### Run from the docker image on dockerhub
 
 This is the simplest option to run the application: Only one command 
-is required for the API be available. It could be a good idea if you 
-have a fast internet connection as the pulled image weighs a few GB. If you 
-choose this deployment, issue:
+is required for the API be available. The pulled image weighs a few GB 
+so a fast internet connection is necessary. 
+
+If you choose this method, issue:
 
 `docker run --name match_container -p 8080:80 noamba/matches:latest`   
 
@@ -62,7 +63,7 @@ To choose this method issue:
 on network & machine speed?) - enough time to grab a cup of tea ;-) 
 
 
-When completed, run a docker container from the created image, issue:
+When completed, to run a docker container from the created image issue:
 
 `docker run --name match_container -p 8080:80 match_img`
 
