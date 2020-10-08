@@ -1,9 +1,9 @@
 """
 Note for developer:
 To run flask application in dev:
-    Activated, "cd app && export FLASK_APP=main" then "flask run" OR
-        "python main.py". This setup is as required for the dockerized
-        version which will only copy app/
+Activated, "cd app && export FLASK_APP=main" then "flask run" OR
+"python main.py". This setup is as required for the dockerized
+version which will only copy app/
 """
 from flask import Flask
 
