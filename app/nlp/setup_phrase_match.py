@@ -56,7 +56,7 @@ def get_match_dict(categories_series):
     """
     match_dict = defaultdict(set)
 
-    for original_category in categories_series.tolist():
+    def make_match_dict(original_category):
         language = get_language(original_category)
         original_category_no_language = (
             remove_language(original_category) if language else original_category
@@ -66,6 +66,8 @@ def get_match_dict(categories_series):
 
         if language in NON_ENGLISH_LANGUAGES:
             match_dict[cleaned_category].add(original_category)
+
+    categories_series.apply(make_match_dict)
 
     return match_dict
 
