@@ -1,17 +1,18 @@
-from nlp.prepare_data import prepare_data
+from pprint import pprint
+
+from nlp.prepare_data import prepare_data_set
 from nlp.setup_phrase_match import (
     get_categories,
-    output_categories_df,
     get_match_dict,
     get_phrase_matcher,
 )
 from nlp.utils import save_object_to_disk, load_objects_from_disk
 from settings import (
     CATEGORIES_FILE,
-    DEBUG,
     PERSIST_MATCH_OBJECTS,
     MATCH_DICT_PICKLE_FILE,
     PHRASE_MATCHER_PICKLE_FILE,
+    DEBUG,
 )
 
 
@@ -35,12 +36,12 @@ def create_match_objects(
     print("Creating match objects from scratch...")
     # set up required objects for matching categories to a phrase
     categories = get_categories(categories_file)
-    prepared_data = prepare_data(categories)
+    prepared_data_set = prepare_data_set(categories)
 
+    match_dict = get_match_dict(prepared_data_set)
     if DEBUG == "Full":
-        output_categories_df(prepared_data)
+        pprint(match_dict)
 
-    match_dict = get_match_dict(prepared_data)
     phrase_matcher = get_phrase_matcher(match_dict)
 
     if persist_match_objects:

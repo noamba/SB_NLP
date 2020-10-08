@@ -3,6 +3,7 @@ from collections import defaultdict
 import pandas as pd
 from spacy.matcher import PhraseMatcher
 
+from nlp.prepare_data import lemmatize, clean_string, get_language, remove_language
 from nlp.utils import timeit
 from settings import NLP_ENG, NON_ENGLISH_LANGUAGES
 
@@ -30,10 +31,11 @@ def get_phrase_matcher(match_dict):
 
 
 @timeit
-def get_match_dict(categories_df):
+def get_match_dict(categories_series):
     """Create a dictionary with keys:
-        - The cleaned and lemmatized data and
-        - If the category is non-English: The cleaned category as well
+        - The *cleaned lemmatized* categories and
+        - If the category is non-English: The cleaned (non-lemmatized)
+            category as well
     and values: The matching original categories for each key. Some keys
     will have more than one category.
 
@@ -48,30 +50,24 @@ def get_match_dict(categories_df):
          ...}
 
     Args:
-        categories_df: {pandas DataFrame} includes cleaned + lemmatized strings
+        categories_series: {pandas Series} series of strings
 
     Returns: {dict}
     """
     match_dict = defaultdict(set)
 
-    for index, row in categories_df.iterrows():
-        match_dict[row.clean_category_lemma].add(row.category)
-        if row.language in NON_ENGLISH_LANGUAGES:
-            match_dict[row.clean_category].add(row.category)
+    for original_category in categories_series.tolist():
+        language = get_language(original_category)
+        original_category_no_language = (
+            remove_language(original_category) if language else original_category
+        )
+        cleaned_category = clean_string(original_category_no_language)
+        match_dict[lemmatize(cleaned_category)].add(original_category)
+
+        if language in NON_ENGLISH_LANGUAGES:
+            match_dict[cleaned_category].add(original_category)
 
     return match_dict
-
-
-def output_categories_df(categories_df):
-    """Output contents of dataframe"""
-    for index, row in categories_df.iterrows():
-        print(
-            row.category,
-            row.clean_category,
-            row.language or "No language",
-            row.clean_category_lemma,
-            sep=",",
-        )
 
 
 @timeit

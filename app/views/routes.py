@@ -23,5 +23,5 @@ def configure_routes(app, match_dict, phrase_matcher):
             return json.dumps({"error": error_message})
 
         return json.dumps(
-            get_matched_categories_in_phrase(match_dict, phrase_matcher, text)
+            list(get_matched_categories_in_phrase(match_dict, phrase_matcher, text))
         )

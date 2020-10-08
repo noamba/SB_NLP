@@ -2,7 +2,7 @@ import pickle
 from pprint import pprint
 from time import perf_counter, sleep
 
-from settings import DEBUG, NLP_ENG
+from settings import DEBUG
 
 
 def timeit(func):
@@ -49,25 +49,9 @@ def load_objects_from_disk(path):
     return loaded_object
 
 
-def lemmatize(phrase):
-    """Lemmatize words in the phrase.
-    Note: The Space large English model includes some foreign words.
-    """
-    doc = NLP_ENG(phrase)
-
-    lemmatized_list = []
-    for token in doc:
-        lemmatized_list.append(token.lemma_)
-
-    return " ".join(lemmatized_list)
-
-
-def output_matches(phrase, cleaned_phrase, match_strings, matched_categories):
+def output_matches(phrase, matched_original_categories):
     """Send data to output"""
     print("Phrase:", phrase)
-    print("Cleaned phrase:", cleaned_phrase)
-    print(f"Matched strings:")
-    pprint(match_strings)
     print("Matched categories:")
-    pprint(matched_categories)
+    pprint(matched_original_categories)
     print("\n")
