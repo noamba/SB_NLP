@@ -130,6 +130,7 @@ instead of a file.
 - Refactor to simplify and by that reduce bug-risk and increase 
 maintainability and extendability.
 - Optimize speed and memory footprint of the initial match-phrase creation.
+- Deploy to AWS.
 - For a more complicated application and/or additional dev and deployment 
 requirements I would consider `poetry` and/or `conda` to manage packages.
 
