@@ -10,6 +10,7 @@ from flask import Flask
 from views.routes import configure_routes
 from views.helpers import setup_match_objects
 
+print("\n\n>>> Match application is starting... <<<\n\n")
 
 app = Flask(__name__)
 
