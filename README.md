@@ -27,32 +27,45 @@ Recommended: 16 GB RAM (though 8 should probably be enough).
 
 ## Installation and setup
 
-### Docker
+### Docker Installation
 Make sure docker is installed on your machine,
 to install see instructions here: https://docs.docker.com/get-docker/
 
-### Settings
+### Run from the docker image on dockerhub
 
-Settings can be found in `app/settings.py`. Notable are:
+This is the simplest option to run the application: Only one command 
+is required for the API be available. It could be a good idea if you 
+have a fast internet connection as the pulled image weighs a few GB. If you 
+choose this deployment, issue:
 
-`PERSIST_MATCH_OBJECTS` - Save artifacts for future use. Defaults to `True`.
+`docker run --name match_container -p 8080:80 noamba/matches:latest`   
 
-`DEBUG` - Sets level of debug messages sent to output. Defaults to `None`.
+#### Notes
+- The interface will be ready when the message 
+">>> Match application is ready <<<" is displayed 
+in the container log (and output).  
 
 
-### Build the docker image
+### Build the docker image locally and run it
+Alternatively, you can build the image locally. This will reduce the amount 
+of data pulled from dockerhub. After building the image you will need to `run` 
+it with the instructions below. 
+
+To choose this method issue:
 
 `docker build -t match_img .`  
 
 #### Notes 
-- Don't forget the dot at the end :-)
-- This step will take a few minutes (possibly 5 to 10 minutes depending   
+- Consider changing settings (see below) before building the image
+- Don't forget the dot at the end of the `build` command :-)
+- This step will take a few minutes (depending   
 on network & machine speed?) - enough time to grab a cup of tea ;-) 
 
-## Usage
 
-### Run a docker container from the created image 
+When completed, run a docker container from the created image, issue:
+
 `docker run --name match_container -p 8080:80 match_img`
+
 
 #### Notes
 - If the setting `PERSIST_MATCH_OBJECTS` is set to `True` pickled objects will be 
@@ -61,17 +74,33 @@ objects when the docker container is restarted.
 - To save the pickled objects on your file system, you could mount a directory 
 with the `--volume` option of `docker run` and set the file paths in 
 `settings.py` accordingly.
-- This step may take a few minutes (depending on machine speed). The interface 
-will be ready when the message ">>> Match application is ready <<<" is displayed 
+- This step may take a few minutes as well (depending on machine speed). 
+The interface will be ready when the message 
+">>> Match application is ready <<<" is displayed 
 in the container log (and output).
 - If `PERSIST_MATCH_OBJECTS` is `True` this step will be faster in 
 future uses.
 
-### Using the interface
+
+### Settings
+
+Settings can be found in `app/settings.py`. If you want to change them 
+best to do so before building the image, or, with the local settings file 
+mounted into the container. 
+
+Notable settings are:
+
+`PERSIST_MATCH_OBJECTS` - Save artifacts for future use. Defaults to `True`.
+
+`DEBUG` - Sets level of debug messages sent to output. Defaults to `None`.
+
+
+## API Usage
+
 Once the container is up and running `localhost` should 
 accept requests like the examples below.  
 
-#### Examples
+### Examples
 Try the following in your browser:
 
 `http://127.0.0.1:8080/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices`
