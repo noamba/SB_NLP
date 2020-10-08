@@ -4,7 +4,7 @@
 * [Introduction](#introduction)
 * [Requirements](#requirements)
 * [Installation and setup](#installation-and-setup)
-* [Usage](#Usage)
+* [API Usage](#api-usage)
 * [Additional docker commands testing and running in a dev environment](#additional-docker-commands-testing-and-running-in-a-dev-environment)
 * [Possible next steps](#possible-next-steps)
 
