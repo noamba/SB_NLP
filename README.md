@@ -10,11 +10,12 @@
 
 ## Introduction
 This application follows the instructions in the provided 
-`TASK_INSTRUCTIONS.png`. It uses `Python`, 
+`TASK_INSTRUCTIONS.png` image. It uses `Python`, 
 `Spacy`, `Pandas`, `Flask`, `uSWGI`, `Nginx` and `Docker` to create a REST 
 micro-service that takes as input a string parameter containing natural 
 language in any language, and returns a list of matching categories 
-independent of case, plurality and punctuation.
+independent of case, plurality and punctuation (see details and examples
+in TASK_INSTRUCTIONS.png).
 
 The phrase-matching object is created (or loaded from disk) at application
 startup. This takes a while, but, it allows for the more important 
