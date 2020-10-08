@@ -70,7 +70,7 @@ future uses.
 Once the container is up and running `localhost` should 
 accept requests like the examples below.  
 
-### Examples
+#### Examples
 Try the following in your browser:
 
 `http://127.0.0.1:8080/?text=I+love+concentrated+apricot+juice.+I+can+also+drink+blueberry-juices+or+concentrated+Blueberry+juices`
@@ -97,16 +97,15 @@ Currently example tests are in:
 - `app/nlp/tests/unit`
 
 #### To run all tests in the docker container
-- Connect to the running container with
-`docker exec -it match_container /bin/bash`
-- Issue: `pytest -v`
+
+Issue: `docker exec -it match_container /bin/bash -c "pytest -v"`
 
 #### To run tests in a dev environment
 - Create a `python 3.6` virtual environment (you may need to install 
 `virtualenv`)
 - issue: `export FLASK_APP=main`
-- Activate the virtual environment and cd to `app` dir: `cd app`
-- issue: `pytest -v`
+- Activate the virtual environment and cd to the `app` dir: `cd app`
+- Issue: `pytest -v`
 
 #### To run the app in a dev environment
 
@@ -118,16 +117,19 @@ Then, activated in the `app` dir, issue: `python main.py`
 
 
 ## Possible next steps
-1. NLP nay be improved. For example: There are more than 40 
+- NLP nay be improved. For example: There are more than 40 
 languages in the `off_categories.tsv` file. I used 
 `Spacy`'s large English model to lemmatize all categories. It seems `Spacy` 
 has models for about 15 languages (including a `Multi-language` model) - 
 those could be used to lemmatize specific languages better. 
 Other packages (e.g. `NLTK`) may be useful for this as well. 
-2. Add tests: For example, I did not test all units (functions).
-3. Persist data in a production level DB (perhaps Postgres/Redis/Mongo?) 
+- Add tests: For example, I did not test all units (functions).
+- Persist data in a production level DB (perhaps Postgres/Redis/Mongo?) 
 instead of a file.
-4. Add type annotation to allow static type checking with mypy. 
-5. For a more complicated application and/or additional dev and deployment 
+- Add type annotation to allow static type checking with mypy. 
+- Refactor to simplify and by that reduce bug-risk and increase 
+maintainability and extendability.
+- Optimize speed and memory footprint of the initial match-phrase creation.
+- For a more complicated application and/or additional dev and deployment 
 requirements I would consider `poetry` and/or `conda` to manage packages.
 
