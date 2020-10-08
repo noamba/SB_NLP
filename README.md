@@ -10,16 +10,16 @@
 
 ## Introduction
 This application follows the instructions in the provided 
-`TASK_INSTRUCTIONS.png`. It uses 
-`Spacy`, `pandas`, `flask`, `uswgi`, `nginx` and `docker` to create a REST 
+`TASK_INSTRUCTIONS.png`. It uses `Python`, 
+`Spacy`, `Pandas`, `Flask`, `uSWGI`, `Nginx` and `Docker` to create a REST 
 micro-service that takes as input a string parameter containing natural 
-language in any relevant language, and returns a list of matched categories 
+language in any language, and returns a list of matching categories 
 independent of case, plurality and punctuation.
 
 The phrase-matching object is created (or loaded from disk) at application
 startup. This takes a while, but, it allows for the more important 
-*quick responses* from the API 
-endpoint when searching for matching categories in a phrase.
+*snappy response* from the API 
+endpoint when searching for categories in a phrase.
 
 ## Requirements
 Recommended: 16 GB RAM (though 8 should probably be enough).
