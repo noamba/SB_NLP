@@ -19,7 +19,7 @@ def prepare_data_set(categories_series):
 
     Returns: {pandas Series} The cleaned Series
     """
-    # TODO: check and combine
+    # TODO: combine and add test
     categories_series = categories_series.dropna()
     categories_series = categories_series.drop_duplicates()
 
@@ -40,6 +40,7 @@ def lemmatize(phrase):
 
 
 def clean_string(phrase):
+    #TODO: add test
     """Clean string:
     - Lower case
     - Remove spaces on left and right
