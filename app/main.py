@@ -7,8 +7,8 @@ version which will only copy app/
 """
 from flask import Flask
 
-from views.routes import configure_routes
 from helpers import setup_match_objects
+from routes import configure_routes
 
 print("\n\n>>> Match application is starting... <<<\n\n")
 

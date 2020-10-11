@@ -4,11 +4,11 @@ import pandas as pd
 import pytest
 from flask import Flask
 
+from helpers import setup_match_objects
 from nlp.prepare_data import prepare_data_set
 from nlp.setup_phrase_match import get_match_dict, get_phrase_matcher
+from routes import configure_routes
 from settings import TESTING_10_CATEGORIES_FILE
-from helpers import setup_match_objects
-from views.routes import configure_routes
 
 PhraseMatch = namedtuple("PhraseMatch", ["phrase", "matches"])
 
