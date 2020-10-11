@@ -1,9 +1,9 @@
 import re
 
-import numpy as np
-
 from nlp.utils import timeit
 from settings import NLP_ENG, TRANSLATE_TABLE
+
+MULTI_WHITE_SPACE_PATTERN = re.compile(r"\s\s+")  # two or more whitespace chars
 
 
 def remove_punct(text):
@@ -51,7 +51,9 @@ def clean_string(phrase):
 
     Returns: {str} the cleaned string
     """
-    return re.sub(r"\s+", " ", remove_punct(phrase.lower().lstrip().rstrip()))
+    return MULTI_WHITE_SPACE_PATTERN.sub(
+        " ", remove_punct(phrase.lower().lstrip().rstrip())
+    )
 
 
 def get_language(text):
@@ -71,4 +73,3 @@ def remove_language(text):
     For example, if text is "Fr:blah" "blah" will be returned.
     """
     return text.split(":")[1]
-
