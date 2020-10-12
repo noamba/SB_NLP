@@ -29,7 +29,7 @@ def timeit(func):
 @timeit
 def save_object_to_disk(object_to_save, path):
     """Save (pickle) an object to disk"""
-    print(f"Saving object to {path}...")
+    print(f"Trying to save pickled object to {path}...")
 
     with open(path, "wb") as f:
         pickle.dump(object_to_save, f)
@@ -40,7 +40,7 @@ def save_object_to_disk(object_to_save, path):
 @timeit
 def load_objects_from_disk(path):
     """Load (unpickle) an object from disk"""
-    print(f"Loading object from {path}...")
+    print(f"Trying to open and load pickled object from: {path}")
     with open(path, "rb") as f:
         loaded_object = pickle.load(f)
 

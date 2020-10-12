@@ -71,8 +71,9 @@ def setup_match_objects(
     """
     match_dict = phrase_matcher = None
 
+    print(f"Match-objects persistence is set to: {PERSIST_MATCH_OBJECTS}")
+
     if persist_match_objects:
-        print("Trying to Load match objects from disk...")
         try:
             match_dict = load_objects_from_disk(match_dict_pickle_file)
             phrase_matcher = load_objects_from_disk(phrase_matcher_pickle_file)
