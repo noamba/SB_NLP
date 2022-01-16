@@ -15,7 +15,7 @@ It is not the most recent, most complete or the best work I ever did, but it is 
 
 ## Introduction
 This application follows the instructions in the provided 
-`TASK_INSTRUCTIONS.png` image. It uses `Python`, 
+[instructions](https://github.com/noamba/nlp_categories/blob/master/TASK_INSTRUCTIONS.png). It uses `Python`, 
 `Spacy`, `Pandas`, `Flask`, `uSWGI`, `Nginx` and `Docker` to create a REST 
 micro-service that takes as input a string parameter containing natural 
 language in any language, and returns a list of matching categories 
