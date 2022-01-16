@@ -1,5 +1,9 @@
 # Category Match API exercise
 
+## Note
+This exercise was done as part of a job application. I kept it public on github as a small example of my work. 
+It is not the most recent, most complete or probably the best work I ever did, but it is one example of what I can do (by the way, I got that job!).
+
 ## Table of contents
 * [Introduction](#introduction)
 * [Requirements](#requirements)
@@ -8,9 +12,6 @@
 * [Additional docker commands testing and running in a dev environment](#additional-docker-commands-testing-and-running-in-a-dev-environment)
 * [Possible next steps](#possible-next-steps)
 
-## Note
-This exercise was done as part of a job application. I kept it public on github as a small example of my work. 
-It is not the most recent, most complete or probably the best work I ever did, but it is an example of my abilities. By the way, I got that job!
 
 ## Introduction
 This application follows the instructions in the provided 
