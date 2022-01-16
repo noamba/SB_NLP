@@ -20,7 +20,7 @@ It uses `Python`,
 micro-service that takes as input a string parameter containing natural 
 language in any language, and returns a list of matching categories 
 independent of case, plurality and punctuation (see details and examples
-in TASK_INSTRUCTIONS.png).
+in the instructions page).
 
 The phrase-matching object is created (or loaded from disk) at application
 startup. This takes a while, but, it allows for the more important 
